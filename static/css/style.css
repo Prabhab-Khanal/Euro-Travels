@@ -1,0 +1,72 @@
+/* CSS for adminmain.html starts here */
+.wrapper {
+    display: flex;
+    flex: 1;
+}
+
+.sidebar {
+    width: 250px;
+    background-color: #343a40;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 20px; /* Gap between the elements */
+}
+
+.sidebar a {
+    text-decoration: none;
+    color: white;
+    padding: 10px 15px;
+    display: block;
+    transition: background-color 0.2s;
+    width: 100%;
+    text-align: center;
+    padding: 40px;
+    font-size: 20px;
+}
+
+.sidebar a:hover {
+    background-color: #495057;
+}
+
+.main-content {
+    flex: 1;
+    background-color: #f8f9fa;
+    padding: 20px;
+}
+
+.header {
+    background-color: #ffffff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.317);
+    padding: 10px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.header .search-bar {
+    width: 300px;
+    margin-right: 30px;
+}
+
+.header input[type="search"] {
+    width: 100%;
+    padding: 5px 10px;
+    border-radius: 4px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.317);
+}
+
+.main-header{
+    margin-left: 30px;
+    font-size: 40px;
+}
+
+.main-p{
+    margin-top: 20px;
+    margin-left: 55px;
+    font-size: 25px;
+}
+
+/* CSS for adminmain.html ends here */
