@@ -1,9 +1,9 @@
 .container {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: center;
-  height: 100vh;
   padding: 15px;
+  padding-top: 7rem;
 }
 
 #login-form {
@@ -11,6 +11,7 @@
   padding: 20px;
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  width: 400px; 
 }
 
 h2 {
@@ -34,5 +35,10 @@ h2 {
 @media (max-width: 576px) {
   .container {
     padding: 10px;
+    padding-top: 20px; /* Adjust padding for smaller screens */
+  }
+
+  #login-form {
+    max-width: 90%; /* Adjust the form width for smaller screens */
   }
 }

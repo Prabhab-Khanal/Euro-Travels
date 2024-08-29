@@ -23,7 +23,8 @@
 .sidebar a {
     text-decoration: none;
     color: white;
-    padding: 10px 15px;
+    padding: 30px 15px;
+    margin-top: 20px;
     display: block;
     transition: background-color 0.2s;
     width: 100%;
