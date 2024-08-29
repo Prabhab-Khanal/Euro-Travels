@@ -1,31 +1,38 @@
 .container {
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -70%);
-}
-
-h2 {
-    margin-bottom: 20px;
-    color: #333;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  padding: 15px;
 }
 
 #login-form {
-    background-color: #e0e0e0;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  background-color: #e0e0e0;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+h2 {
+  margin-bottom: 20px;
+  color: #333;
 }
 
 #togglePassword {
-    cursor: pointer;
+  cursor: pointer;
 }
 
 .btn-primary {
-    border-radius: 15px;
-    transition: background-color 0.3s ease;
+  border-radius: 15px;
+  transition: background-color 0.3s ease;
 }
 
 .btn-primary:hover {
-    background-color: #004085;
+  background-color: #004085;
+}
+
+@media (max-width: 576px) {
+  .container {
+    padding: 10px;
+  }
 }
