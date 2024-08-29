@@ -6,16 +6,16 @@ from django.contrib.auth.decorators import login_required
 
 # for admin panel
 @login_required
-def dashboard(request):
-    return render(request, 'admin/dashboard.html')
-
-@login_required
 def package(request):
     return render(request, 'admin/package.html')
 
 @login_required
 def driver(request):
     return render(request, 'admin/driver.html')
+
+@login_required
+def hotels(request):
+    return render(request, 'admin/hotels.html')
 
 @login_required
 def ticket(request):
@@ -25,7 +25,7 @@ def ticket(request):
 
 def adminlogin(request):
     if request.user.is_authenticated:
-        return redirect('dashboard')
+        return redirect('package')
     if request.method == 'POST':
         username = request.POST.get('username')
         password = request.POST.get('password')
@@ -35,9 +35,9 @@ def adminlogin(request):
         
         if user is not None:
             if user.is_staff:
-                # Successful login, redirect to dashboard
+                # Successful login, redirect to package
                 login(request, user)
-                return redirect('dashboard')
+                return redirect('package')
                       
             else:
                 # Denies access if "STAFF STATUS" in database is false

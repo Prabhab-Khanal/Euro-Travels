@@ -3,5 +3,60 @@
 {% load static %}
 
 {% block title %}
-  Drivers
+  Packages
+{% endblock %}
+
+{% block body %}
+<div class="container mt-4">
+    <!-- Add Package Button -->
+    <div class="add-package-btn text-end mb-3">
+        <a href="#" class="btn btn-primary btn-lg">Add Driver Details</a>
+    </div>
+
+    <!-- Package Table -->
+    <div class="package-table">
+        <table class="table table-striped table-hover">
+            <thead class="table-dark">
+                  <tr>
+                      <th>SN.</th>
+                      <th>Driver Name</th>
+                      <th>Ph. Number</th>
+                      <th>Vehicle Name</th>
+                      <th>Vehicle No.</th>
+                  </tr>
+            </thead>
+            <tbody>
+                <!-- Sample Data -->
+              <tr>
+                  <td>1</td>
+                  <td>John Doe</td>
+                  <td>(555) 123-4567</td>
+                  <td>Toyota Prius</td>
+                  <td>AB123CD</td>
+              </tr>
+              <tr>
+                  <td>2</td>
+                  <td>Jane Smith</td>
+                  <td>(555) 987-6543</td>
+                  <td>Honda Accord</td>
+                  <td>EF456GH</td>
+              </tr>
+              <tr>
+                  <td>3</td>
+                  <td>Michael Johnson</td>
+                  <td>(555) 321-7654</td>
+                  <td>Ford Explorer</td>
+                  <td>IJ789KL</td>
+              </tr>
+              <tr>
+                  <td>4</td>
+                  <td>Emily Davis</td>
+                  <td>(555) 654-3210</td>
+                  <td>Chevrolet Tahoe</td>
+                  <td>MN012OP</td>
+              </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
 {% endblock %}

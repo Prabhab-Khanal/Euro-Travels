@@ -1,0 +1,44 @@
+.container {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding: 15px;
+  padding-top: 7rem;
+}
+
+#login-form {
+  background-color: #e0e0e0;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  width: 400px; 
+}
+
+h2 {
+  margin-bottom: 20px;
+  color: #333;
+}
+
+#togglePassword {
+  cursor: pointer;
+}
+
+.btn-primary {
+  border-radius: 15px;
+  transition: background-color 0.3s ease;
+}
+
+.btn-primary:hover {
+  background-color: #004085;
+}
+
+@media (max-width: 576px) {
+  .container {
+    padding: 10px;
+    padding-top: 20px; /* Adjust padding for smaller screens */
+  }
+
+  #login-form {
+    max-width: 90%; /* Adjust the form width for smaller screens */
+  }
+}
