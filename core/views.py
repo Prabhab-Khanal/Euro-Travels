@@ -57,3 +57,12 @@ def adminlogout(request):
     logout(request)
     messages.success(request, "You have been logged out successfully.")
     return redirect('admin-login')
+
+# logic for updating forms
+@login_required
+def addpackage(request):
+    return render(request, 'admin/form/packageupdate.html')
+
+@login_required
+def adddriver(request):
+    return render(request, 'admin/form/driverupdate.html')

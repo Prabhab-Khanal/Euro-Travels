@@ -116,7 +116,7 @@
 
 
 
-/* CSS for Packages Page starts here*/
+/* CSS for Packages and driver Page starts here*/
 
 .add-package-btn .btn {
     background-color: #007bff;
@@ -136,8 +136,8 @@
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     margin-top: 20px;
-    margin-left: 50px; /* Moves the table slightly to the right */
-    width: 85%; /* Reduces the width of the table */
+    margin-left: 50px;
+    width: 85%; 
     position: relative;
     left: 170px;
 }
@@ -161,5 +161,13 @@
 .table-hover tbody tr:hover {
     background-color: #e9ecef;
 }
+
+.btn-sm {
+    padding: 5px 10px;
+    font-size: 12px;
+    border-radius: 5px;
+}
+
+/* CSS for Form inside the page which is initially hidden */
 
 /* CSS for Packages Page ends here*/
