@@ -23,4 +23,6 @@ urlpatterns = [
     #urls for updating form of admin panel
     path("package/add/", addpackage, name="add-package"),
     path("driver/add/", adddriver, name="add-driver"),
+    path("package/update/", updatepackage, name="update-package"),
+    path("driver/update/", updatedriver, name="update-driver"),
 ] + static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)
