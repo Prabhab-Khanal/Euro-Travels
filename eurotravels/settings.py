@@ -116,3 +116,7 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 # URL for login required
 LOGIN_URL = 'admin-login'
 SESSION_EXPIRE_AT_BROWSER_CLOSE = True
+
+# image media directory
+MEDIA_ROOT = os.path.join(BASE_DIR, 'medai')
+MEDIA_URL = '/media/'
