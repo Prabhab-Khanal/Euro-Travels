@@ -1,4 +1,4 @@
-/* CSS for adminmain.html starts here */
+/* CSS for adminbase.html starts here */
 .sidebar {
     width: 220px;
     background-color: #343a40;
@@ -109,7 +109,7 @@
     }
 }
 
-/* CSS for adminmain.html ends here */
+/* CSS for adminbase.html ends here */
 
 
 
@@ -167,7 +167,3 @@
     font-size: 12px;
     border-radius: 5px;
 }
-
-/* CSS for Form inside the page which is initially hidden */
-
-/* CSS for Packages Page ends here*/

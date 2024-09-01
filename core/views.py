@@ -61,8 +61,8 @@ def adminlogout(request):
 # logic for updating forms
 @login_required
 def addpackage(request):
-    return render(request, 'admin/form/packageupdate.html')
+    return render(request, 'admin/form/packageadd.html')
 
 @login_required
 def adddriver(request):
-    return render(request, 'admin/form/driverupdate.html')
+    return render(request, 'admin/form/driveradd.html')
