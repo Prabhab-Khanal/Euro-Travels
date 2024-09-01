@@ -20,6 +20,7 @@
           <tr>
             <th>SN.</th>
             <th>Driver Name</th>
+            <th>Gender</th>
             <th>Ph. Number</th>
             <th>Vehicle Name</th>
             <th>Vehicle No.</th>
@@ -27,53 +28,20 @@
           </tr>
         </thead>
         <tbody>
+          {% for i in drivers %}
           <tr>
-            <td>1</td>
-            <td>John Doe</td>
-            <td>(555) 123-4567</td>
-            <td>Toyota Prius</td>
-            <td>AB123CD</td>
+            <td>{{i.driverId}}</td>
+            <td>{{i.drivername}}</td>
+            <td>{{i.gender}}</td>
+            <td>{{i.phone_number}}</td>
+            <td>{{i.vehicle_name}}</td>
+            <td>{{i.vehicle_number}}</td>
             <td>
               <a href="#" class="btn btn-warning btn-sm me-2"><i class="bi bi-pencil-square"></i></a>
               <a href="#" class="btn btn-danger btn-sm"><i class="bi bi-trash"></i></a>
             </td>
           </tr>
-
-          <tr>
-            <td>1</td>
-            <td>John Doe</td>
-            <td>(555) 123-4567</td>
-            <td>Toyota Prius</td>
-            <td>AB123CD</td>
-            <td>
-              <a href="#" class="btn btn-warning btn-sm me-2"><i class="bi bi-pencil-square"></i></a>
-              <a href="#" class="btn btn-danger btn-sm"><i class="bi bi-trash"></i></a>
-            </td>
-          </tr>
-
-          <tr>
-            <td>1</td>
-            <td>John Doe</td>
-            <td>(555) 123-4567</td>
-            <td>Toyota Prius</td>
-            <td>AB123CD</td>
-            <td>
-              <a href="#" class="btn btn-warning btn-sm me-2"><i class="bi bi-pencil-square"></i></a>
-              <a href="#" class="btn btn-danger btn-sm"><i class="bi bi-trash"></i></a>
-            </td>
-          </tr>
-
-          <tr>
-            <td>1</td>
-            <td>John Doe</td>
-            <td>(555) 123-4567</td>
-            <td>Toyota Prius</td>
-            <td>AB123CD</td>
-            <td>
-              <a href="#" class="btn btn-warning btn-sm me-2"><i class="bi bi-pencil-square"></i></a>
-              <a href="#" class="btn btn-danger btn-sm"><i class="bi bi-trash"></i></a>
-            </td>
-          </tr>
+          {% endfor %}
         </tbody>
       </table>
     </div>
