@@ -170,3 +170,20 @@ def adddriver(request):
 def updatedriver(request):
     return render(request, 'admin/form/driverupdate.html')
 
+'''
+    Function to delete package and drivers details
+'''
+
+# for packages
+@login_required
+def delete_package(request, packageId):
+    package = Package.objects.get(packageId = packageId)
+    package.delete()
+    return redirect('package')
+
+# for drivers
+@login_required
+def delete_driver(request, driverId):
+    driver = Driver.objects.get(driverId = driverId)
+    driver.delete()
+    return redirect('driver')

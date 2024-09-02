@@ -25,4 +25,9 @@ urlpatterns = [
     path("driver/add/", adddriver, name="add-driver"),
     path("package/update/", updatepackage, name="update-package"),
     path("driver/update/", updatedriver, name="update-driver"),
+
+    # url for deleting package and driver details
+    path("/delete/<str:packageId>", delete_package, name="delete-package"),
+    path("/delete/drv/<str:driverId>", delete_driver, name="delete-driver"),
+
 ] + static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)
