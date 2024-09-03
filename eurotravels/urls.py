@@ -23,11 +23,17 @@ urlpatterns = [
     #urls for updating form of admin panel
     path("package/add/", addpackage, name="add-package"),
     path("driver/add/", adddriver, name="add-driver"),
-    path("package/update/", updatepackage, name="update-package"),
-    path("driver/update/", updatedriver, name="update-driver"),
+
+    # for updating packages & drivers
+    path("package/update/<str:packageId>/", updatepackage, name="update-package"),
+    path("driver/update/<str:driverId>/", updatedriver, name="update-driver"),
+
+    # saving new changes
+    path("package/save/<str:packageId>/", save_package_update, name="update-package-save"),
+    path("driver/save/<str:driverId>/", save_driver_update, name="update-driver-save"),
 
     # url for deleting package and driver details
-    path("/delete/<str:packageId>", delete_package, name="delete-package"),
-    path("/delete/drv/<str:driverId>", delete_driver, name="delete-driver"),
+    path("delete/<str:packageId>/", delete_package, name="delete-package"),
+    path("delete/drv/<str:driverId>/", delete_driver, name="delete-driver"),
 
 ] + static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)

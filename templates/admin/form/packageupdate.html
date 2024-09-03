@@ -6,34 +6,34 @@
 
 {% block body %}
 <div class="container d-flex justify-content-center align-items-center" style="height: 110vh; margin-left: 200px;">
-  <div class="form-container p-4" style="background-color: #d3d3d3; border-radius: 10px; width: 600px; height: 700px; overflow-y: auto;">
-    <h2 class="text-center mb-3">Add Package Details</h2>
-    <form action="#" method="post" enctype="multipart/form-data">
+  <div class="form-container p-4" style="background-color: #d3d3d3; border-radius: 10px; width: 600px; height: 710px; overflow-y: auto;">
+    <h2 class="text-center mb-3">Edit Package Details</h2>
+    <form action="{% url "update-package-save" package.packageId %}" method="POST" enctype="multipart/form-data">
       {% csrf_token %}
       <div class="mb-2">
         <label for="packageName" class="form-label">Package Name</label>
-        <input type="text" class="form-control" name="package_name" required style="border-radius: 10px;">
+        <input type="text" class="form-control" name="package_name" value="{{package.packagename}}" required style="border-radius: 10px;">
       </div>
       <div class="mb-2">
         <label for="duration" class="form-label">Duration</label>
-        <input type="text" class="form-control" name="duration" required style="border-radius: 10px;">
+        <input type="text" class="form-control" name="duration" value="{{package.duration}}" required style="border-radius: 10px;">
       </div>
       <div class="mb-2">
         <label for="dateOfTour" class="form-label">Date of Tour</label>
-        <input type="date" class="form-control" id="dateOfTour" name="date_of_tour" required style="border-radius: 10px;" min="{{ today_date }}">
+        <input type="date" class="form-control" id="dateOfTour" name="date_of_tour" value="{{package.dateoftour|date:'Y-m-d'}}" required style="border-radius: 10px;" min="{{ today_date }}">
       </div>
       <div class="mb-2">
         <label for="price" class="form-label">Price of Package</label>
-        <input type="number" class="form-control" name="price" required style="border-radius: 10px;">
+        <input type="number" class="form-control" name="price" value="{{package.price}}" required style="border-radius: 10px;">
       </div>
       <div class="mb-2">
         <label for="packageDescription" class="form-label">Package Description</label>
-        <textarea class="form-control" name="package_description" rows="5" style="border-radius: 10px;" required></textarea>
+        <textarea class="form-control" name="package_description" rows="5" style="border-radius: 10px;" required>{{package.packagedescription}}</textarea>
       </div>
-      <div class="mb-3">
-        <label for="packageImage" class="form-label">Upload Image</label>
-        <input type="file" class="form-control" name="package_image" accept=".png, .jpg, .jpeg" style="border-radius: 10px;">
-      </div>
+        <div class="mb-3">
+          <label for="packageImage" class="form-label">Upload Image</label>
+          <input type="file" class="form-control" name="package_image" accept=".png, .jpg, .jpeg" style="border-radius: 10px;">
+        </div>
       <div class="text-center">
         <button type="submit" class="btn btn-primary submit-btn" style="border-radius: 10px; background-color: #0D96F2;">Submit</button>
       </div>

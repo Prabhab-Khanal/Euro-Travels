@@ -1,10 +1,12 @@
 import re
+import os
 from django.contrib.auth.models import User
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from core.models import *
+from django.core.files.storage import default_storage
 
 # logic for the login page
 def adminlogin(request):
@@ -115,10 +117,6 @@ def addpackage(request):
 
     return render(request, 'admin/form/packageadd.html')
 
-@login_required
-def updatepackage(request):
-    return render(request, 'admin/form/packageupdate.html')
-
 # to add drivers details
 @login_required
 def adddriver(request):
@@ -165,25 +163,111 @@ def adddriver(request):
 
     return render(request, 'admin/form/driveradd.html')
 
-# to update driver detail
-@login_required
-def updatedriver(request):
-    return render(request, 'admin/form/driverupdate.html')
 
 '''
     Function to delete package and drivers details
 '''
-
 # for packages
 @login_required
 def delete_package(request, packageId):
-    package = Package.objects.get(packageId = packageId)
-    package.delete()
-    return redirect('package')
+    try:
+        package = Package.objects.get(packageId = packageId)
+
+        package.delete()
+        return redirect('package')
+    
+    except Package.DoesNotExist:
+        messages.error(request, "Package not found...")
 
 # for drivers
 @login_required
 def delete_driver(request, driverId):
-    driver = Driver.objects.get(driverId = driverId)
-    driver.delete()
+    try:
+        driver = Driver.objects.get(driverId=driverId)
+
+        # Delete the driver object
+        driver.delete()
+        messages.success(request, "Driver details deleted successfully.")
+        
+    except Driver.DoesNotExist:
+        messages.error(request, "Driver not found...")
+        
     return redirect('driver')
+
+# to update driver detail
+@login_required
+def updatepackage(request, packageId):
+    package = Package.objects.get(packageId = packageId)
+
+    context = {
+        'package' : package
+    }
+
+    return render(request, 'admin/form/packageupdate.html', context=context)
+
+@login_required
+def save_package_update(request, packageId):
+    # Getting the package from
+    if request.method == 'POST':
+        # getting details from form
+        name_new = request.POST.get('package_name')
+        duration_new = request.POST.get('duration')
+        date_new = request.POST.get('date_of_tour')
+        price_new = request.POST.get('price')
+        packagedescription_new = request.POST.get('package_description')
+
+        update_set = Package.objects.get(packageId=packageId)
+
+        # Checking if a new image is being uploaded
+        if 'package_image' in request.FILES:
+            image_new = request.FILES['package_image']
+            package.image = image_new
+
+        # Changing old package details to the new one
+        update_set.packagename = name_new
+        update_set.duration = duration_new
+        update_set.dateoftour = date_new
+        update_set.price = price_new
+        update_set.packagedescription = packagedescription_new
+
+        update_set.save()
+
+        return redirect('package')
+
+    return render(request, 'package.html')
+
+@login_required
+def updatedriver(request, driverId):
+    driver = Driver.objects.get(driverId = driverId)
+
+    context = {
+        'driver' : driver
+    }
+
+    return render(request, 'admin/form/driverupdate.html', context=context)
+
+@login_required
+def save_driver_update(request, driverId):
+    # Getting the package from
+    if request.method == 'POST':
+        # getting details from form
+        name_new = request.POST.get('drivername')
+        gender_new = request.POST.get('driver_gender')
+        number_new = request.POST.get('number')
+        vehicle_name_new = request.POST.get('vehiclename')
+        vehicle_number_new = request.POST.get('vehiclenumber')
+
+        update_set = Driver.objects.get(driverId=driverId)
+
+        # Changing old package details to the new one
+        update_set.drivername = name_new
+        update_set.gender = gender_new
+        update_set.phone_number = number_new
+        update_set.vehicle_name = vehicle_name_new
+        update_set.vehicle_number = vehicle_number_new
+
+        update_set.save()
+
+        return redirect('driver')
+
+    return render(request, 'driver.html')
