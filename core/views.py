@@ -8,6 +8,8 @@ from django.contrib.auth.decorators import login_required
 from core.models import *
 from django.core.files.storage import default_storage
 
+from homepage.models import *
+
 # logic for the login page
 def adminlogin(request):
     if request.user.is_authenticated:
@@ -54,6 +56,16 @@ def package(request):
     }
     
     return render(request, 'admin/package.html', context=context)
+
+
+def message(request):
+    # importing data from package database
+    messages = Contact.objects.all()
+    context = {
+        'contacts' : messages
+    }
+    
+    return render(request, 'admin/contact.html', context=context)
 
 @login_required
 def driver(request):

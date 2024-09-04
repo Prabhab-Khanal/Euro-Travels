@@ -1,0 +1,41 @@
+{% extends 'admin/adminbase.html' %}
+
+{% load static %}
+
+{% block title %}
+  Messages
+{% endblock %}
+
+{% block body %}
+  <div class="container mt-4">
+    
+
+    <!-- Package Table -->
+    <div class="package-table mt-4">
+      <table class="table table-striped table-hover">
+        <thead class="table-dark">
+          <tr>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Message</th>
+            <th>Date</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for i in contacts %}
+          <tr>
+            <td>{{i.name}}</td>
+            <td>{{i.email}}</td>
+            <td>{{i.subject}}</td>
+            <td>{{i.date}}</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+{% endblock %}
+
+{% block js %}
+  <script src="{% static 'js/script.js' %}"></script>
+{% endblock %}

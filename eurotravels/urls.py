@@ -1,5 +1,5 @@
 from django.contrib import admin
-from django.urls import path
+from django.urls import include, path
 from core.views import *
 from django.conf import settings
 from django.conf.urls.static import static
@@ -10,6 +10,10 @@ admin.site.site_title = "Euro Tour Travels Admin Portal"
 admin.site.index_title = "Welcome to Euro Tour Travels Portal"
 
 urlpatterns = [
+    # homepage
+    path('',include('homepage.urls')),
+
+
     path("admin/", admin.site.urls),
 
     # urls for admin panel
@@ -19,6 +23,7 @@ urlpatterns = [
     path("driver/", driver, name="driver"),
     path("air/ticketing/", ticket, name="ticket"),
     path("hotels/", hotels, name="hotels"),
+    path("message/", message, name="message"),
 
     #urls for updating form of admin panel
     path("package/add/", addpackage, name="add-package"),
