@@ -16,6 +16,15 @@
         background-color: #f0f0f0;
         font-family: 'Noto Sans', sans-serif;
     }
+    .success {
+      color: green;
+    }
+    .error {
+      color: red;
+    }
+    .warning {
+      color: orange;
+    }
   </style>
 
   <body>
@@ -23,21 +32,29 @@
       <div class="row justify-content-center">
           <form id="login-form" method="POST" action="#">
             <h2 class="text-center mt-2">Admin Login</h2>
+            {% if messages %}
+            <div class="messages mt-4">
+                {% for message in messages %}
+                    <p class="{{ message.tags }}">{{ message }}</p>
+                {% endfor %}
+            </div>
+            {% endif %}
+
             {% csrf_token %}
-            <div class="mt-5">
+            <div class="mt-4">
               <label for="username" class="form-label">Username</label>
               <div class="input-group">
               <input type="text" class="form-control" id="username" name="username" required />
               </div>
             </div>
-            <div class="my-5">
+            <div class="mt-4">
               <label for="password" class="form-label">Password</label>
               <div class="input-group">
                 <input type="password" class="form-control" id="password" name="password" required />
                 <button type="button" class="btn btn-outline-secondary" id="togglePassword">Show</button>
               </div>
             </div>
-            <button type="submit" class="btn btn-primary w-100 mb-2">Login</button>
+            <button type="submit" class="btn btn-primary w-100 mb-2 mt-4">Login</button>
           </form> 
       </div>
     </div>

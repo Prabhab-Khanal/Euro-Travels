@@ -6,8 +6,17 @@
 
 {% block body %}
 <div class="container d-flex justify-content-center align-items-center" style="height: 82vh; margin-left: 250px;">
-    <div class="form-container p-4" style="background-color: #d3d3d3; border-radius: 10px; width: 500px; height: 470px; overflow-y: auto;">
+    <div class="form-container p-4" style="background-color: #d3d3d3; border-radius: 10px; width: 500px; height: auto; overflow-y: auto;">
       <h2 class="text-center mb-3">User Registration</h2>
+
+      {% if messages %}
+            <div class="messages">
+                {% for message in messages %}
+                    <p class="{{ message.tags }}">{{ message }}</p>
+                {% endfor %}
+            </div>
+        {% endif %}
+
       <form action="{% url 'add-user' %}" method="POST" enctype="multipart/form-data">
         {% csrf_token %}
         <div class="mb-2">

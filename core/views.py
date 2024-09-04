@@ -19,6 +19,7 @@ def adminlogin(request):
         user = authenticate(request, username=username, password=password)
         
         if user is not None:
+            
             if user.is_staff:
                 # Successful login, redirect to package
                 login(request, user)
@@ -293,7 +294,15 @@ def adduser(request):
 
         # creating user
         else:
-            user = User.objects.create_user(username=username, password=password)
+            # Creation of new user
+            user = User.objects.create_user(
+                username=username, 
+                password=password,
+                is_staff = True,
+                is_superuser = False
+            )
+            
+            # Linking created user's data into Profile table along with the role
             Profile.objects.create(
                 user = user,
                 driver_management=driver_management,
