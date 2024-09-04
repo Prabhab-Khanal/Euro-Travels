@@ -279,6 +279,7 @@ to add user by superadmin
 @user_passes_test(lambda u: u.is_superuser) 
 def adduser(request):
     if request.method == 'POST':
+        print(request.POST)
         username = request.POST.get('username')
         password = request.POST.get('password')
         driver_management = 'driver_management' in request.POST

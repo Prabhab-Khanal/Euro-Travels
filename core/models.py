@@ -37,8 +37,8 @@ class Driver(models.Model):
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     driver_management = models.BooleanField(default=False)
-    package_managament = models.BooleanField(default=False)
-    hotel_managament = models.BooleanField(default=False)
+    package_management = models.BooleanField(default=False) 
+    hotel_management = models.BooleanField(default=False)
     air_ticketing_management = models.BooleanField(default=False)
 
     def __str__(self):
