@@ -1,5 +1,5 @@
 from django.db import models
-from django.utils import timezone
+from django.contrib.auth.models import User
 
 # database schema for packages details
 class Package(models.Model):
@@ -31,3 +31,15 @@ class Driver(models.Model):
 
     def __str__(self):
         return f"{self.vehicle_number} - {self.drivername}"
+    
+
+# Creating different roles for the users
+class Profile(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    driver_management = models.BooleanField(default=False)
+    package_managament = models.BooleanField(default=False)
+    hotel_managament = models.BooleanField(default=False)
+    air_ticketing_management = models.BooleanField(default=False)
+
+    def __str__(self):
+        return self.user.username

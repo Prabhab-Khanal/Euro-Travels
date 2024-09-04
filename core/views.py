@@ -1,12 +1,11 @@
 import re
-import os
 from django.contrib.auth.models import User
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from core.models import *
-from django.core.files.storage import default_storage
+from django.contrib.auth.decorators import user_passes_test
 
 # logic for the login page
 def adminlogin(request):
@@ -271,3 +270,38 @@ def save_driver_update(request, driverId):
         return redirect('driver')
 
     return render(request, 'driver.html')
+
+''' 
+to add user by superadmin
+ this function only lets superuser to goto add user page
+'''
+@login_required
+@user_passes_test(lambda u: u.is_superuser) 
+def adduser(request):
+    if request.method == 'POST':
+        username = request.POST.get('username')
+        password = request.POST.get('password')
+        driver_management = 'driver_management' in request.POST
+        package_management = 'package_management' in request.POST
+        hotel_management = 'hotel_management' in request.POST
+        air_ticketing_management = 'air_ticketing_management' in request.POST
+
+        # checking if username already exists
+        if User.objects.filter(username=username).exists():
+            messages.error(request, "Username already exists...")
+
+        # creating user
+        else:
+            user = User.objects.create_user(username=username, password=password)
+            Profile.objects.create(
+                user = user,
+                driver_management=driver_management,
+                package_management=package_management,
+                hotel_management=hotel_management,
+                air_ticketing_management=air_ticketing_management
+            )
+
+            messages.success(request, "User created successfully!")
+            return redirect('add-user')
+
+    return render(request, 'admin/form/adduser.html')

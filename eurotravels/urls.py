@@ -36,4 +36,7 @@ urlpatterns = [
     path("delete/<str:packageId>/", delete_package, name="delete-package"),
     path("delete/drv/<str:driverId>/", delete_driver, name="delete-driver"),
 
+    # url to add user by superuser
+    path("usermanagement/add-user", adduser, name="add-user"),
+
 ] + static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)

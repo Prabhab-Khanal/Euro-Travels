@@ -1,0 +1,75 @@
+{% extends 'admin/adminbase.html' %}
+
+{% block title %}
+  User Registration
+{% endblock %}
+
+{% block body %}
+<div class="container d-flex justify-content-center align-items-center" style="height: 82vh; margin-left: 250px;">
+    <div class="form-container p-4" style="background-color: #d3d3d3; border-radius: 10px; width: 500px; height: 470px; overflow-y: auto;">
+      <h2 class="text-center mb-3">User Registration</h2>
+      <form action="{% url 'add-user' %}" method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="mb-2">
+          <label for="username" class="form-label">Username</label>
+          <input type="text" class="form-control" name="username" placeholder="Username..." required style="border-radius: 10px;" />
+        </div>
+        <div class="mb-2">
+          <label for="password" class="form-label">Password</label>
+          <div class="input-group">
+            <input type="password" class="form-control" id="password" placeholder="Password..." name="password" required />
+            <button type="button" class="btn btn-outline-secondary" id="togglePassword">Show</button>
+          </div>
+        </div>
+        <div class="my-4">
+            <label for="password" class="form-label">Choose Role For User</label>
+          <div class="form-check">
+            <input type="checkbox" class="form-check-input" id="driver_management" name="driver_management">
+            <label class="form-check-label" for="driver_management">Driver Management</label>
+          </div>
+          <div class="form-check">
+            <input type="checkbox" class="form-check-input" id="package_management" name="package_management">
+            <label class="form-check-label" for="package_management">Package Management</label>
+          </div>
+          <div class="form-check">
+            <input type="checkbox" class="form-check-input" id="hotel_management" name="hotel_management">
+            <label class="form-check-label" for="hotel_management">Hotel Management</label>
+          </div>
+          <div class="form-check">
+            <input type="checkbox" class="form-check-input" id="air_ticketing_management" name="air_ticketing_management">
+            <label class="form-check-label" for="air_ticketing_management">Air Ticketing Management</label>
+          </div>
+        </div>
+        <div class="text-center">
+          <button type="submit" class="btn btn-primary submit-btn" style="border-radius: 10px;  background-color: #0D96F2;">Submit</button>
+        </div>
+      </form>
+    </div>
+</div>
+{% endblock %}
+
+{% block js %}
+    <script>
+      document.getElementById('togglePassword').addEventListener('click', function () {
+        const passwordInput = document.getElementById('password')
+        const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password'
+        passwordInput.setAttribute('type', type)
+        this.textContent = type === 'password' ? 'Show' : 'Hide'
+      })
+    </script>
+{% endblock %}
+
+{% block custom_css %}
+    <style>
+        .form-check-input {
+            margin-top: 0.3em;
+        }
+        .form-check-label {
+            margin-left: 1em;
+            font-size: 1em;
+        }
+        .submit-btn:hover {
+            background-color: #0b7bd3;
+        }
+    </style>
+{% endblock %}
