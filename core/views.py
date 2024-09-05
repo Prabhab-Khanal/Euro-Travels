@@ -3,14 +3,61 @@ from django.contrib.auth.models import User
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
-from django.contrib.auth.decorators import login_required
+from django.contrib.auth.decorators import login_required, user_passes_test
 from core.models import *
-from django.contrib.auth.decorators import user_passes_test
+
+'''
+ The following logics are being used to make custom role which will be used to restrict different pages
+ It checks if user has role of superuser and also the respective role required
+'''
+
+# For driver management role
+def user_has_driver_management_role(user):
+    return user.is_superuser or (hasattr(user, 'profile') and user.profile.driver_management)
+
+# For package management role
+def user_has_package_management_role(user):
+    return user.is_superuser or (hasattr(user, 'profile') and user.profile.package_management)
+
+# For hotel management role
+def user_has_hotel_management_role(user):
+    return user.is_superuser or (hasattr(user, 'profile') and user.profile.hotel_management)
+
+# For air ticketing management role
+def user_has_air_ticketing_management_role(user):
+    return user.is_superuser or (hasattr(user, 'profile') and user.profile.air_ticketing_management)
+
+'''
+    The code given below is used for the redirection of different user in different pages---
+    This will help to eliminate infinite Test done by @user_pass_test for a role until its true---
+    If this function is not made then the page will not load because
+    of infinite request made by @user_pass_test---
+'''
+def redirect_different_user(request, user):
+    if user.is_superuser:
+        return redirect('package')  # Redirect superuser to package page
+    
+    elif hasattr(user, 'profile') and user.profile.driver_management:
+        return redirect('driver')  # Redirect user with driver_management role
+    
+    elif hasattr(user, 'profile') and user.profile.package_management:
+        return redirect('package')  # Redirect user with package_management role
+    
+    elif hasattr(user, 'profile') and user.profile.hotel_management:
+        return redirect('hotels')
+    
+    elif hasattr(user, 'profile') and user.profile.air_ticketing_management:
+        return redirect('tickets')
+
+    else:
+        messages.error(request, "Access denied. You do not have permission to access this page.")
+        return redirect('admin-login')
 
 # logic for the login page
 def adminlogin(request):
     if request.user.is_authenticated:
-        return redirect('package')
+        return redirect_different_user(request, request.user)
+    
     if request.method == 'POST':
         username = request.POST.get('username')
         password = request.POST.get('password')
@@ -46,6 +93,7 @@ def adminlogout(request):
 
 # for admin panel
 @login_required
+@user_passes_test(user_has_package_management_role)
 def package(request):
     # importing data from package database
     packages = Package.objects.all()
@@ -56,6 +104,7 @@ def package(request):
     return render(request, 'admin/package.html', context=context)
 
 @login_required
+@user_passes_test(user_has_driver_management_role)
 def driver(request):
     # importing data from Driver database
     drivers = Driver.objects.all()
@@ -66,15 +115,18 @@ def driver(request):
     return render(request, 'admin/driver.html', context=context)
 
 @login_required
+@user_passes_test(user_has_hotel_management_role)
 def hotels(request):
     return render(request, 'admin/hotels.html')
 
 @login_required
+@user_passes_test(user_has_air_ticketing_management_role)
 def ticket(request):
     return render(request, 'admin/ticket.html')
 
 # to add packages
 @login_required
+@user_passes_test(user_has_package_management_role)
 def addpackage(request):
     if request.method == 'POST':
         packagename = request.POST.get('package_name')
@@ -119,6 +171,7 @@ def addpackage(request):
 
 # to add drivers details
 @login_required
+@user_passes_test(user_has_driver_management_role)
 def adddriver(request):
     if request.method == 'POST':
         drivername = request.POST.get('drivername')
@@ -169,6 +222,7 @@ def adddriver(request):
 '''
 # for packages
 @login_required
+@user_passes_test(user_has_package_management_role)
 def delete_package(request, packageId):
     try:
         package = Package.objects.get(packageId = packageId)
@@ -181,6 +235,7 @@ def delete_package(request, packageId):
 
 # for drivers
 @login_required
+@user_passes_test(user_has_driver_management_role)
 def delete_driver(request, driverId):
     try:
         driver = Driver.objects.get(driverId=driverId)
@@ -196,6 +251,7 @@ def delete_driver(request, driverId):
 
 # to update driver detail
 @login_required
+@user_passes_test(user_has_package_management_role)
 def updatepackage(request, packageId):
     package = Package.objects.get(packageId = packageId)
 
@@ -206,6 +262,7 @@ def updatepackage(request, packageId):
     return render(request, 'admin/form/packageupdate.html', context=context)
 
 @login_required
+@user_passes_test(user_has_package_management_role)
 def save_package_update(request, packageId):
     # Getting the package from
     if request.method == 'POST':
@@ -237,6 +294,7 @@ def save_package_update(request, packageId):
     return render(request, 'package.html')
 
 @login_required
+@user_passes_test(user_has_driver_management_role)
 def updatedriver(request, driverId):
     driver = Driver.objects.get(driverId = driverId)
 
@@ -247,6 +305,7 @@ def updatedriver(request, driverId):
     return render(request, 'admin/form/driverupdate.html', context=context)
 
 @login_required
+@user_passes_test(user_has_driver_management_role)
 def save_driver_update(request, driverId):
     # Getting the package from
     if request.method == 'POST':
