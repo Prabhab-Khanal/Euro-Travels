@@ -53,6 +53,8 @@ def redirect_different_user(request, user):
         messages.error(request, "Access denied. You do not have permission to access this page.")
         return redirect('admin-login')
 
+from homepage.models import *
+
 # logic for the login page
 def adminlogin(request):
     if request.user.is_authenticated:
@@ -102,6 +104,16 @@ def package(request):
     }
     
     return render(request, 'admin/package.html', context=context)
+
+
+def message(request):
+    # importing data from package database
+    messages = Contact.objects.all()
+    context = {
+        'contacts' : messages
+    }
+    
+    return render(request, 'admin/contact.html', context=context)
 
 @login_required
 @user_passes_test(user_has_driver_management_role)
