@@ -13,16 +13,15 @@
       <a class="btn btn-primary btn-lg" href="{% url 'add-driver' %}">Add Driver Details</a>
     </div>
 
-    {% if messages %}
-      <div class="messages mt-4">
-        {% for message in messages %}
-          <p class="{{ message.tags }}">{{ message }}</p>
-        {% endfor %}
-      </div>
-    {% endif %}
-
     <!-- Package Table -->
     <div class="package-table mt-4">
+      {% if messages %}
+        <div class="messages mt-4">
+          {% for message in messages %}
+            <p class="{{ message.tags }}">{{ message }}</p>
+          {% endfor %}
+        </div>
+      {% endif %}
       <table class="table table-striped table-hover">
         <thead class="table-dark">
           <tr>
@@ -46,7 +45,8 @@
               <td>{{ i.vehicle_number }}</td>
               <td>
                 <a href="{% url 'update-driver' i.driverId %}" class="btn btn-warning btn-sm me-2"><i class="bi bi-pencil-square"></i></a>
-                <a href="{% url 'delete-driver' i.driverId %}" class="btn btn-danger btn-sm"><i class="bi bi-trash"></i></a>
+                <a href="{% url 'delete-driver' i.driverId %}" class="btn btn-danger btn-sm"
+                onclick="return confirm('Are you sure you want to delete this user?');"><i class="bi bi-trash"></i></a>
               </td>
             </tr>
           {% endfor %}

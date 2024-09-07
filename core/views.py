@@ -240,10 +240,12 @@ def delete_package(request, packageId):
         package = Package.objects.get(packageId = packageId)
 
         package.delete()
-        return redirect('package')
-    
+        messages.error(request, "Package details deleted successfully.")
+
     except Package.DoesNotExist:
         messages.error(request, "Package not found...")
+    
+    return redirect('package')
 
 # for drivers
 @login_required
@@ -254,7 +256,7 @@ def delete_driver(request, driverId):
 
         # Delete the driver object
         driver.delete()
-        messages.success(request, "Driver details deleted successfully.")
+        messages.error(request, "Driver details deleted successfully.")
         
     except Driver.DoesNotExist:
         messages.error(request, "Driver not found...")
@@ -351,7 +353,6 @@ to add user by superadmin
 @user_passes_test(lambda u: u.is_superuser) 
 def adduser(request):
     if request.method == 'POST':
-        print(request.POST)
         username = request.POST.get('username')
         password = request.POST.get('password')
         driver_management = 'driver_management' in request.POST
@@ -369,13 +370,13 @@ def adduser(request):
             user = User.objects.create_user(
                 username=username, 
                 password=password,
-                is_staff = True,
-                is_superuser = False
+                is_staff=True,
+                is_superuser=False
             )
             
             # Linking created user's data into Profile table along with the role
             Profile.objects.create(
-                user = user,
+                user=user,
                 driver_management=driver_management,
                 package_management=package_management,
                 hotel_management=hotel_management,
@@ -385,4 +386,47 @@ def adduser(request):
             messages.success(request, "User created successfully!")
             return redirect('add-user')
 
-    return render(request, 'admin/form/adduser.html')
+    # Retrieving all users and their roles
+    users = User.objects.filter(is_superuser=False)
+    user_roles = []
+    for user in users:
+        # Use get_or_create to ensure a profile exists
+        profile, created = Profile.objects.get_or_create(user=user)
+        roles = {
+            'driver_management': profile.driver_management,
+            'package_management': profile.package_management,
+            'hotel_management': profile.hotel_management,
+            'air_ticketing_management': profile.air_ticketing_management
+        }
+        user_roles.append({
+            'userid': user.id,
+            'username': user.username,
+            'roles': roles
+        })
+
+    return render(request, 'admin/form/adduser.html', {'user_roles': user_roles})
+
+@login_required
+@user_passes_test(lambda u: u.is_superuser)
+def delete_user(request, user_id):
+    try:
+        # Retrieving the user and its associated profile
+        user = User.objects.get(id=user_id)
+        profile = Profile.objects.get(user=user)
+        
+        # Delete the profile first and then user
+        profile.delete()
+        user.delete()
+        
+        # Display a success message
+        messages.success(request, "User's details deleted successfully!")
+
+    except User.DoesNotExist:
+        messages.error(request, "User does not exist.")
+
+    except Profile.DoesNotExist:
+        # If the user exists but the profile doesn't, still delete the user
+        user.delete()
+        messages.warning(request, "User deleted, but no associated profile was found.")
+    
+    return redirect('add-user') 
