@@ -54,6 +54,13 @@
     <div class="package-table">
       <h1 class="text-center" style="position: relative; bottom: 12px;">User Management</h1>
       <table class="table table-striped table-hover">
+        {% if messages %}
+            <div class="messages mt-4">
+                {% for message in messages %}
+                    <p class="{{ message.tags }}">{{ message }}</p>
+                {% endfor %}
+            </div>
+            {% endif %}
         <thead class="table-dark">
           <tr>
             <th>SN.</th>

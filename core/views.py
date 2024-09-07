@@ -419,7 +419,7 @@ def delete_user(request, user_id):
         user.delete()
         
         # Display a success message
-        messages.success(request, "User's details deleted successfully!")
+        messages.error(request, "User's details deleted successfully!")
 
     except User.DoesNotExist:
         messages.error(request, "User does not exist.")
@@ -430,3 +430,4 @@ def delete_user(request, user_id):
         messages.warning(request, "User deleted, but no associated profile was found.")
     
     return redirect('add-user') 
+    

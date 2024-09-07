@@ -10,11 +10,12 @@
   <div class="container mt-4">
     <!-- Add Driver Details Button -->
     <div class="add-package-btn text-end mb-3">
-      <a class="btn btn-primary btn-lg" href="{% url 'add-driver' %}">Add Driver Details</a>
+      <a class="btn btn-primary btn-lg mt-2" href="{% url 'add-driver' %}">Add Driver</a>
     </div>
 
     <!-- Package Table -->
-    <div class="package-table mt-4">
+    <div class="package-table mt-5">
+      <h1 class="text-center" style="position: relative; bottom: 12px;">Driver Management</h1>
       {% if messages %}
         <div class="messages mt-4">
           {% for message in messages %}

@@ -9,12 +9,13 @@
 {% block body %}
   <div class="container mt-4">
     <!-- Add Package Button -->
-    <div class="add-package-btn text-end mb-3">
-      <a class="btn btn-primary btn-lg" href="{% url 'add-package' %}">Add Your Package</a>
+    <div class="add-package-btn text-end mt-4 mb-5">
+      <a class="btn btn-primary btn-lg" href="{% url 'add-package' %}">Add Package</a>
     </div>
 
     <!-- Package Table -->
     <div class="package-table">
+      <h1 class="text-center" style="position: relative; bottom: 12px;">Package Management</h1>
       {% if messages %}
       <div class="messages mt-4">
         {% for message in messages %}
