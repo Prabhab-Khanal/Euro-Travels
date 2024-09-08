@@ -9,7 +9,7 @@
     align-items: center;
     gap: 5px;
     position: fixed;
-    height: 1000vh;
+    height: 100vh;
     overflow: auto;
     z-index: 1000; /* Ensure sidebar is on top of content */
 }
@@ -65,6 +65,18 @@
     margin-top: 20px;
     font-size: 25px;
 }
+
+/* Responsive Design */
+@media (max-width: 991px) {
+    .sidebar {
+        width: 200px; /* Reduce sidebar width on smaller screens */
+    }
+
+    .main-content {
+        margin-left: 200px; /* Adjust offset for smaller sidebar width */
+    }
+}
+
 
 /* Responsive Design */
 @media (max-width: 991px) {
