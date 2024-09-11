@@ -11,7 +11,6 @@
     position: fixed;
     height: 100vh;
     overflow: auto;
-    z-index: 1000; /* Ensure sidebar is on top of content */
 }
 
 .sidebar a {
