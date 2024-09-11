@@ -108,7 +108,7 @@ def package(request):
 
 def message(request):
     # importing data from package database
-    messages = Contact.objects.all()
+    messages = Contact.objects.all().order_by('-date')
     context = {
         'contacts' : messages
     }
@@ -129,12 +129,23 @@ def driver(request):
 @login_required
 @user_passes_test(user_has_hotel_management_role)
 def hotels(request):
-    return render(request, 'admin/hotels.html')
+    # importing data from package database
+    hotels = Hotel.objects.all()
+    context = {
+        'hotels' : hotels
+    }
+    
+    return render(request, 'admin/hotels.html', context=context)
 
 @login_required
 @user_passes_test(user_has_air_ticketing_management_role)
 def ticket(request):
-    return render(request, 'admin/ticket.html')
+    tickets = AirTicket.objects.all()
+    context = {
+        'air_ticket' : tickets
+    }
+    
+    return render(request, 'admin/ticket.html',context= context)
 
 # to add packages
 @login_required
@@ -431,3 +442,217 @@ def delete_user(request, user_id):
     
     return redirect('add-user') 
     
+
+
+
+
+@login_required
+@user_passes_test(user_has_hotel_management_role)
+def addhotel(request):
+    if request.method == 'POST':
+        hotelname = request.POST.get('hotelname')
+        location = request.POST.get('location')
+        rating = request.POST.get('rating')
+        price_per_night = request.POST.get('price_per_night')
+        hotel_description = request.POST.get('hotel_description')
+        image = request.FILES.get('hotel_image')
+
+        # Validation for hotel name and rating
+        pattern = re.compile(r'[A-Za-z]')  # Checks for alphabets in hotel name
+        if not pattern.search(hotelname):
+            messages.error(request, "Hotel name should contain at least one alphabet...")
+            return render(request, 'admin/form/hoteladd.html')
+
+        if not rating.isdigit() or float(rating) > 5:
+            messages.error(request, "Rating must be a number between 0 and 5...")
+            return render(request, 'admin/form/hoteladd.html')
+
+        try:
+            # Creating a new instance of Hotel to save in the database
+            hotel = Hotel(
+                hotelname=hotelname,
+                location=location,
+                rating=rating,
+                price_per_night=price_per_night,
+                hotel_description=hotel_description,
+                image=image
+            )
+            hotel.save()  # Saving the instance
+            messages.success(request, "Hotel details saved successfully...")
+            return redirect('hotels')
+
+        except Exception as e:
+            messages.error(request, f"An error occurred: {e}")
+            return render(request, 'admin/form/hoteladd.html')
+
+    return render(request, 'admin/form/hoteladd.html')
+
+
+
+
+
+
+@login_required
+@user_passes_test(user_has_air_ticketing_management_role)
+def addairticket(request):
+    if request.method == 'POST':
+        airline = request.POST.get('airline')
+        departure = request.POST.get('departure')
+        destination = request.POST.get('destination')
+        date_of_flight = request.POST.get('date_of_flight')
+        price = request.POST.get('price')
+        flight_number = request.POST.get('flight_number')
+        airline_logo = request.FILES.get('airline_logo')
+
+        
+
+        # Validation for airline and flight number
+        pattern = re.compile(r'[A-Za-z]')  # Checks for alphabets in airline name
+        if not pattern.search(airline):
+            messages.error(request, "Airline name should contain at least one alphabet.")
+            return render(request, 'admin/form/ticketadd.html')
+
+        try:
+            # Creating a new instance of AirTicket to save in the database
+            air_ticket = AirTicket(
+                airline=airline,
+                departure=departure,
+                destination=destination,
+                date_of_flight=date_of_flight,
+                price=price,
+                flight_number=flight_number,
+                airline_logo=airline_logo  # Save the uploaded logo
+            )
+            air_ticket.save()  # Saving the instance
+            messages.success(request, "Air Ticket details saved successfully...")
+            return redirect('ticket')
+
+        except Exception as e:
+            messages.error(request, f"An error occurred: {e}")
+            return render(request, 'admin/form/ticketadd.html')
+
+    return render(request, 'admin/form/ticketadd.html')
+
+
+
+
+
+
+@login_required
+@user_passes_test(user_has_hotel_management_role)
+def updatehotel(request, hotelId):
+    hotel = Hotel.objects.get(hotelId=hotelId)
+
+    context = {
+        'hotel': hotel
+    }
+
+    return render(request, 'admin/form/hotelupdate.html', context=context)
+
+
+@login_required
+@user_passes_test(user_has_hotel_management_role)
+def save_hotel_update(request, hotelId):
+    if request.method == 'POST':
+        hotelname = request.POST.get('hotel_name')
+        location = request.POST.get('location')
+        rating = request.POST.get('rating')
+        price_per_night = request.POST.get('price_per_night')
+        hotel_description = request.POST.get('hotel_description')
+
+        update_set = Hotel.objects.get(hotelId=hotelId)
+
+        if 'hotel_image' in request.FILES:
+            image = request.FILES['hotel_image']
+            update_set.image = image
+
+        update_set.hotelname = hotelname
+        update_set.location = location
+        update_set.rating = rating
+        update_set.price_per_night = price_per_night
+        update_set.hotel_description = hotel_description
+
+        update_set.save()
+
+        messages.success(request, "Hotel details updated successfully...")
+        return redirect('hotels')
+
+    return render(request, 'admin/hotels.html')
+
+
+
+
+@login_required
+@user_passes_test(user_has_air_ticketing_management_role)
+def updateairticket(request, ticketId):
+    air_ticket = AirTicket.objects.get(flight_number =ticketId)
+
+    context = {
+        'air_ticket': air_ticket
+    }
+
+    return render(request, 'admin/form/ticketupdate.html', context=context)
+
+
+@login_required
+@user_passes_test(user_has_air_ticketing_management_role)
+def save_air_ticket_update(request, ticketId):
+    if request.method == 'POST':
+        airline = request.POST.get('airline')
+        departure = request.POST.get('departure')
+        destination = request.POST.get('destination')
+        date_of_flight = request.POST.get('date_of_flight')
+        price = request.POST.get('price')
+        flight_number = request.POST.get('flight_number')
+
+        update_set = AirTicket.objects.get(flight_number=ticketId)
+
+        # Handling file upload for airline_logo
+        if request.FILES.get('airline_logo'):
+            airline_logo = request.FILES['airline_logo']
+            update_set.airline_logo = airline_logo
+
+        update_set.airline = airline
+        update_set.departure = departure
+        update_set.destination = destination
+        update_set.date_of_flight = date_of_flight
+        update_set.price = price
+        update_set.flight_number = flight_number
+
+        update_set.save()
+
+        messages.success(request, "Air ticket details updated successfully...")
+        return redirect('ticket')
+
+    return render(request, 'admin/ticket.html')
+
+
+
+
+@login_required
+@user_passes_test(user_has_hotel_management_role)
+def delete_hotel(request, hotelId):
+    try:
+        hotel = Hotel.objects.get(hotelId=hotelId)
+        hotel.delete()
+        messages.success(request, "Hotel details deleted successfully.")
+    except Hotel.DoesNotExist:
+        messages.error(request, "Hotel not found...")
+    
+    return redirect('hotels')
+
+
+
+
+@login_required
+@user_passes_test(user_has_air_ticketing_management_role)
+def delete_air_ticket(request, ticketId):
+    try:
+        air_ticket = AirTicket.objects.get(flight_number=ticketId)
+        air_ticket.delete()
+        messages.success(request, "Air ticket details deleted successfully.")
+    except AirTicket.DoesNotExist:
+        messages.error(request, "Air ticket not found...")
+    
+    return redirect('ticket')
+

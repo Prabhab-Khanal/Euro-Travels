@@ -33,6 +33,8 @@
         <div class="mb-3">
           <label for="packageImage" class="form-label">Upload Image</label>
           <input type="file" class="form-control" name="package_image" accept=".png, .jpg, .jpeg" style="border-radius: 10px;">
+          {{package.image.url}}
+          <img src="{{package.image.url}}" style="max-height: 100px; margin-top: 10px;">
         </div>
       <div class="text-center">
         <button type="submit" class="btn btn-primary submit-btn" style="border-radius: 10px; background-color: #0D96F2;">Submit</button>

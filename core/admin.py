@@ -5,3 +5,5 @@ from core.models import *
 admin.site.register(Package)
 admin.site.register(Driver)
 admin.site.register(Profile)
+admin.site.register(AirTicket)
+admin.site.register(Hotel)

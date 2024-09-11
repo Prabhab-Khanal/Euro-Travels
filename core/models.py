@@ -43,3 +43,34 @@ class Profile(models.Model):
 
     def __str__(self):
         return self.user.username
+    
+
+
+# database schema for hotel details
+class Hotel(models.Model):
+    hotelId = models.AutoField(primary_key=True)
+    hotelname = models.CharField(max_length=255, verbose_name="Hotel Name", null=True, blank=False, default="")
+    location = models.CharField(max_length=255, verbose_name="Location", null=True, blank=False, default="")
+    rating = models.DecimalField(max_digits=3, decimal_places=1, verbose_name="Rating", null=True, blank=False)
+    price_per_night = models.IntegerField(verbose_name="Price Per Night", null=True, blank=False)
+    hotel_description = models.CharField(max_length=5000, verbose_name="Hotel Description", null=True, blank=False, default="")
+    image = models.ImageField(upload_to="hotels/images", verbose_name="Images", null=True, blank=False, default='')
+
+    def __str__(self):
+        return f"{self.hotelId} - {self.hotelname}"
+
+
+# database schema for air ticket details
+class AirTicket(models.Model):
+    airline = models.CharField(max_length=255, verbose_name="Airline", null=True, blank=False, default="")
+    departure = models.CharField(max_length=255, verbose_name="Departure Location", null=True, blank=False, default="")
+    destination = models.CharField(max_length=255, verbose_name="Destination", null=True, blank=False, default="")
+    date_of_flight = models.DateField(verbose_name="Date of Flight", null=True, blank=False)
+    price = models.IntegerField(verbose_name="Price of Ticket", null=True, blank=False)
+    flight_number = models.CharField(max_length=50, verbose_name="Ticket Number", null=True, blank=False, default="")
+    airline_logo = models.ImageField(upload_to='airline_logos/images', null=True, blank=True, verbose_name="Airline Logo")
+
+
+    def __str__(self):
+        return f"{self.airline} - Flight {self.flight_number} ({self.departure} to {self.destination})"
+

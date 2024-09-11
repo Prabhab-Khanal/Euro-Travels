@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Sliders</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        .container {
+            width: 90%;
+            margin: 20px auto;
+        }
+        .slider {
+            width: 100%;
+            max-width: 1200px; /* Adjust this value as needed */
+            margin: 20px auto;
+            overflow: hidden;
+            position: relative;
+            border: 2px solid #ddd; /* Optional: add a border for better visibility */
+            border-radius: 8px; /* Optional: add rounded corners */
+        }
+        .slides {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+        }
+        .slide {
+            min-width: 25%; /* Adjust based on the number of images you want to show */
+            box-sizing: border-box;
+            padding: 10px; /* Add padding if needed */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background: #fff;
+            border-radius: 8px; /* Card-like rounded corners */
+            overflow: hidden;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Optional: shadow for card effect */
+        }
+        .slide img {
+            width: 100%;
+            height: 200px; /* Fixed height for consistency */
+            object-fit: cover; /* Ensure image covers the area */
+            display: block;
+        }
+        .slide h2, .slide p {
+            margin: 10px 0;
+            text-align: center;
+        }
+        .buttons {
+            position: absolute;
+            top: 50%;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            transform: translateY(-50%);
+        }
+        .button {
+            background: rgba(0, 0, 0, 0.5);
+            color: white;
+            border: none;
+            padding: 10px;
+            cursor: pointer;
+        }
+        section {
+            margin-bottom: 40px;
+        }
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <section id="packages-section">
+            <h1>Package Sliders</h1>
+            <div class="slider" id="package-slider">
+                <div class="slides">
+                    {% for package in packages %}
+                        <div class="slide">
+                            <img src="{{ package.image.url }}" alt="{{ package.packagename }}">
+                            <h2>{{ package.packagename }}</h2>
+                            <p>{{ package.packagedescription }}</p>
+                        </div>
+                    {% endfor %}
+                </div>
+                <div class="buttons">
+                    <button class="button" onclick="prevSlide('package-slider')">❮</button>
+                    <button class="button" onclick="nextSlide('package-slider')">❯</button>
+                </div>
+            </div>
+        </section>
+
+        <section id="hotels-section">
+            <h1>Hotel Sliders</h1>
+            <div class="slider" id="hotel-slider">
+                <div class="slides">
+                    {% for hotel in hotels %}
+                        <div class="slide">
+                            <img src="{{ hotel.image.url }}" alt="{{ hotel.hotelname }}">
+                            <h2>{{ hotel.hotelname }}</h2>
+                            <p>{{ hotel.hotel_description }}</p>
+                        </div>
+                    {% endfor %}
+                </div>
+                <div class="buttons">
+                    <button class="button" onclick="prevSlide('hotel-slider')">❮</button>
+                    <button class="button" onclick="nextSlide('hotel-slider')">❯</button>
+                </div>
+            </div>
+        </section>
+
+        <section id="airtickets-section">
+            <h1>Air Ticket Sliders</h1>
+            <div class="slider" id="airticket-slider">
+                <div class="slides">
+                    {% for ticket in airtickets %}
+                        <div class="slide">
+                            <img src="{{ ticket.airline_logo.url }}" alt="{{ ticket.airline }}">
+                            <h2>{{ ticket.airline }} - Flight {{ ticket.flight_number }}</h2>
+                            <p>From: {{ ticket.departure }} To: {{ ticket.destination }}</p>
+                        </div>
+                    {% endfor %}
+                </div>
+                <div class="buttons">
+                    <button class="button" onclick="prevSlide('airticket-slider')">❮</button>
+                    <button class="button" onclick="nextSlide('airticket-slider')">❯</button>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <script>
+        function prevSlide(sliderId) {
+            const slider = document.getElementById(sliderId);
+            const slides = slider.querySelector('.slides');
+            const slideCount = slides.children.length;
+            let currentIndex = (slides.style.transform.match(/translateX\((-?\d+)%\)/) || [])[1] || 0;
+            currentIndex = parseInt(currentIndex, 10) || 0;
+            const newIndex = (currentIndex === 0 ? slideCount - 1 : currentIndex / -100 - 1) * -100;
+            slides.style.transform = `translateX(${newIndex}%)`;
+        }
+
+        function nextSlide(sliderId) {
+            const slider = document.getElementById(sliderId);
+            const slides = slider.querySelector('.slides');
+            const slideCount = slides.children.length;
+            let currentIndex = (slides.style.transform.match(/translateX\((-?\d+)%\)/) || [])[1] || 0;
+            currentIndex = parseInt(currentIndex, 10) || 0;
+            const newIndex = (currentIndex === -100 * (slideCount - 1) ? 0 : currentIndex / -100 + 1) * -100;
+            slides.style.transform = `translateX(${newIndex}%)`;
+        }
+
+        function autoSlide(sliderId, interval = 3000) {
+            setInterval(() => {
+                nextSlide(sliderId);
+            }, interval);
+        }
+
+        // Start automatic sliding
+        //autoSlide('package-slider');
+        //autoSlide('hotel-slider');
+        //autoSlide('airticket-slider');
+    </script>
+</body>
+</html>
