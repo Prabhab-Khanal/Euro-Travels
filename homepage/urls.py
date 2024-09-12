@@ -5,5 +5,9 @@ urlpatterns =[
 
     path('',views.index,name='index'),
     path('package_list/', views.package_list, name='packages'),
-    path('main/',views.main1,name="main")
+    path('main/', views.main1, name="main"),
+
+    # for contact me pages
+    path('contact/', views.contact_view, name="contact-me"),
+    path('success/', views.success, name="success-page"),
 ]

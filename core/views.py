@@ -441,6 +441,8 @@ def delete_user(request, user_id):
         messages.warning(request, "User deleted, but no associated profile was found.")
     
     return redirect('add-user') 
+
+
     
 
 
@@ -655,4 +657,3 @@ def delete_air_ticket(request, ticketId):
         messages.error(request, "Air ticket not found...")
     
     return redirect('ticket')
-

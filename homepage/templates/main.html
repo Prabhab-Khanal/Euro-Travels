@@ -171,7 +171,7 @@
 
     <section class="section__container card__container" id="contact">
       <div class="card_content">
-      <form method="post">
+      <form method="POST" action="{% url 'contact-me' %}">
         {%csrf_token%}
         <h2 class="section__header">Contact Us</h2>
 
