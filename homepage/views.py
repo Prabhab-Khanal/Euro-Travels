@@ -8,9 +8,7 @@ from django.conf import settings
 from django.contrib import messages
 from django.core.exceptions import ValidationError
 from django.core.validators import validate_email
-
-
-# Create your views here.
+from django.template.loader import render_to_string
 
 
 def main1(request):
@@ -97,23 +95,23 @@ def contact_view(request):
                 fail_silently=False,
             )
 
-            # subject and body to send user the message that his enquiry is sent
+            # subject and body to send user the message that their enquiry is sent
             thank_you_subject = "Thank you for Contacting Us"
-            thank_you_body = (
-                f"Dear {name},\n\n"
-                "Thank you for contacting Euro Tour Travels. We have received your enquiry, and our team will "
-                "get back to you shortly.\n\n"
-                "Best regards,\n"
-                "Euro Tour Travels Team"
-            )
 
-            # mail to the user contacting the company
+            # Render the HTML email template
+            thank_you_body_html = render_to_string('email_template.html', {
+                'name': name,
+                'message': message,
+            })
+
+            # Send the HTML email to the user
             send_mail(
                 thank_you_subject,
-                thank_you_body,
+                '',  # Plain text version (optional, can be left empty if only sending HTML)
                 settings.EMAIL_HOST_USER,  # Company email address (sender)
                 [email],  # User's email address to receive the thank you email (receiver)
                 fail_silently=False,
+                html_message=thank_you_body_html  # The HTML message
             )
             return redirect('success-page')
 
