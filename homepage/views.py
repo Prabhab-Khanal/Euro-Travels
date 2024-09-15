@@ -5,6 +5,9 @@ from .models import Contact
 from core.models import Package, Hotel, AirTicket
 from django.core.mail import send_mail
 from django.conf import settings
+from django.contrib import messages
+from django.core.exceptions import ValidationError
+from django.core.validators import validate_email
 
 
 # Create your views here.
@@ -60,6 +63,7 @@ def package_list(request):
 
 '''
     This code is used to send all the messages of the contact me to the mail used in .env
+    The mail is sent to the person who is using contact me and also the travel agency
 '''
 def contact_view(request):
     if request.method == 'POST':
@@ -67,22 +71,66 @@ def contact_view(request):
         email = request.POST.get('email')
         message = request.POST.get('message')
 
-        # construction of email subject and message body
+        special_characters = "!@#$%^&*()_-+=/?,<>'"
+
+        # checking if name contains special characters
+        if any(char in special_characters for char in name):
+            return redirect('error-page')
+
+        try:
+            # Validate the email address format
+            validate_email(email)
+        except ValidationError:
+            return redirect('email-page')
+
+        # Construct email subject and message body for the company
         subject = 'Enquiry for Booking Package'
         body = f"Name: {name}\n\nEmail: {email}\n\nMessage:\n{message}"
 
-        # Send the email to the host user
-        send_mail(
-            subject,
-            body,
-            settings.EMAIL_HOST_USER,  # Email for sending the mail to the company
-            [settings.EMAIL_HOST_USER],  # Company email address to receive mail
-            fail_silently=False,
-            )       
-        
-        return redirect('success-page')
-    
+        try:
+            # Send the enquiry email to the company
+            send_mail(
+                subject,
+                body,
+                settings.EMAIL_HOST_USER,  # Company email address (sender)
+                [settings.EMAIL_HOST_USER],  # Company email address to receive the enquiry
+                fail_silently=False,
+            )
+
+            # subject and body to send user the message that his enquiry is sent
+            thank_you_subject = "Thank you for Contacting Us"
+            thank_you_body = (
+                f"Dear {name},\n\n"
+                "Thank you for contacting Euro Tour Travels. We have received your enquiry, and our team will "
+                "get back to you shortly.\n\n"
+                "Best regards,\n"
+                "Euro Tour Travels Team"
+            )
+
+            # mail to the user contacting the company
+            send_mail(
+                thank_you_subject,
+                thank_you_body,
+                settings.EMAIL_HOST_USER,  # Company email address (sender)
+                [email],  # User's email address to receive the thank you email (receiver)
+                fail_silently=False,
+            )
+            return redirect('success-page')
+
+        except Exception as e:
+            # If any error occurs, this block will handle it
+            return redirect('error-page')
+
     return render(request, 'main.html')
 
+# If sending message is successful
 def success(request):
     return render(request, 'success.html')
+
+# If sending message is un-successful
+def error(request):
+    return render(request, 'error.html')
+
+# If sending message is un-successful
+def email_non_exist(request):
+    return render(request, 'email_not_exist.html')

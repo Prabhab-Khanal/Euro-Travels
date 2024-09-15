@@ -10,4 +10,6 @@ urlpatterns =[
     # for contact me pages
     path('contact/', views.contact_view, name="contact-me"),
     path('success/', views.success, name="success-page"),
+    path('error/', views.error, name="error-page"),
+    path('error/', views.email_non_exist, name="email-page"),
 ]
