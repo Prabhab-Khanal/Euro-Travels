@@ -82,19 +82,24 @@ def contact_view(request):
             return redirect('email-page')
 
         # Construct email subject and message body for the company
-        subject = 'Enquiry for Booking Package'
-        body = f"Name: {name}\n\nEmail: {email}\n\nMessage:\n{message}"
+        receiving_subject = 'Message Received From Customer'
+        received_body_html = render_to_string('admin_email_template.html',{
+            'name' : name,
+            'message' : message,
+            'email' : email,
+            })
 
         try:
             # Send the enquiry email to the company
             send_mail(
-                subject,
-                body,
+                receiving_subject,
+                '',
                 settings.EMAIL_HOST_USER,  # Company email address (sender)
                 [settings.EMAIL_HOST_USER],  # Company email address to receive the enquiry
                 fail_silently=False,
+                html_message=received_body_html  # The HTML message
             )
-
+                
             # subject and body to send user the message that their enquiry is sent
             thank_you_subject = "Thank you for Contacting Us"
 
@@ -107,7 +112,7 @@ def contact_view(request):
             # Send the HTML email to the user
             send_mail(
                 thank_you_subject,
-                '',  # Plain text version (optional, can be left empty if only sending HTML)
+                '',
                 settings.EMAIL_HOST_USER,  # Company email address (sender)
                 [email],  # User's email address to receive the thank you email (receiver)
                 fail_silently=False,

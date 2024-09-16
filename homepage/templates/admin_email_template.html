@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+        }
+        .email-container {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .email-header {
+            text-align: center;
+            color: #333333;
+        }
+        .email-header h1 {
+            font-size: 24px;
+            font-weight: bold;
+        }
+        .divider {
+            border-top: 2px solid #333333;
+            margin: 20px 0;
+        }
+        .email-body {
+            font-size: 16px;
+            color: #555555;
+        }
+        .message-box {
+            padding: 10px;
+            background-color: #f9f9f9;
+            border-left: 4px solid #007bff;
+            margin-bottom: 20px;
+        }
+        .email-footer {
+            text-align: center;
+            font-size: 12px;
+            color: #999999;
+        }
+    </style>
+</head>
+<body>
+    <div class="email-container">
+        <div class="email-header">
+            <h1>New Customer Enquiry Received</h1>
+        </div>
+        <div class="divider"></div>
+        <p class="email-body">Dear Team,</p>
+        <p class="email-body">
+            We have received a new enquiry from <strong>{{ name }}</strong> (Email: <strong>{{ email }}</strong>).
+        </p>
+        <p class="email-body">Customer's message:</p>
+        <div class="message-box">
+            <p class="email-body">{{ message }}</p>
+        </div>
+        <p class="email-body">Please review and respond to the enquiry at your earliest convenience.</p>
+        <p class="email-body">Best regards,<br><strong>Euro Tour Travels Team</strong></p>
+        <div class="divider"></div>
+        <p class="email-footer">
+            This is an automated email. Please do not reply to this email.
+        </p>
+    </div>
+</body>
+</html>
