@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kailash Mansarovar Yatra 2024 - 11N/12D Overland Tour</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            color: #333;
+        }
+        header {
+            background: linear-gradient(135deg,#2a7397, #5da6d0);
+            color: #ecf0f1;
+            text-align: center;
+            padding: 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        header h1, header p {
+            position: relative;
+            z-index: 1;
+        }
+        h1, h2 {
+            font-family: 'Playfair Display', serif;
+            color: #2c3e50;
+        }
+        .container {
+            width: 80%;
+            margin: auto;
+            overflow: hidden;
+            padding: 20px;
+        }
+        .section {
+            background: #fff;
+            border-radius: 10px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+        .section:hover {
+            transform: translateY(-5px);
+        }
+        h2 {
+            border-bottom: 2px solid #3498db;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+        }
+        .highlight {
+            background-color: #e74c3c;
+            color: #fff;
+            padding: 5px 10px;
+            border-radius: 3px;
+            font-weight: bold;
+        }
+        #itinerary {
+            list-style-type: none;
+            padding: 0;
+        }
+        .day {
+            background: #ecf0f1;
+            margin-bottom: 15px;
+            padding: 20px;
+            border-radius: 10px;
+            transition: all 0.3s ease;
+        }
+        .day:hover {
+            background: #e0e6e8;
+            transform: scale(1.02);
+        }
+        .day h3 {
+            margin-top: 0;
+            color: #2980b9;
+        }
+        
+        .booking-btn {
+            background-color: #3498db;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            font-size: 16px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        .booking-btn:hover {
+            background-color: #2980b9;
+        }
+        
+    </style>
+</head>
+<body>
+    <header>
+        <a href="{% url 'index' %}">Hello</a>
+        <a href="{% url 'main' %}">
+            <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="black" class="bi bi-house-fill" viewBox="0 0 16 16">
+            <path d="M8.707 1.5a1 1 0 0 0-1.414 0L.646 8.146a.5.5 0 0 0 .708.708L8 2.207l6.646 6.647a.5.5 0 0 0 .708-.708L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293z"/>
+            <path d="m8 3.293 6 6V13.5a1.5 1.5 0 0 1-1.5 1.5h-9A1.5 1.5 0 0 1 2 13.5V9.293z"/>
+            </svg>
+        </a>
+        <h1>Kailash Mansarovar Yatra 2024</h1>
+        <p>11 Nights / 12 Days Overland Tour by Bus</p>
+    </header>
+    
+    <div class="container">
+        <div class="section">
+            <h2>Tour Highlights</h2>
+            <ul>
+                <li> Visit the sacred Mount Kailash and Lake Mansarovar</li>
+                <li> Complete the holy Kailash Parikrama</li>
+                <li> Experience breathtaking Himalayan landscapes</li>
+                <li> Explore Nepali and Tibetan culture</li>
+            </ul>
+        </div>
+
+        <div class="section">
+            <h2>Itinerary</h2>
+            <ul id="itinerary">
+                <li class="day">
+                    <h3>Day 1: Arrival at Gorakhpur</h3>
+                    <p> Pick up from station/airport and night drive to Kathmandu via Sunauli Border.</p>
+                </li>
+                <li class="day">
+                    <h3>Day 2: Kathmandu (1400m)</h3>
+                    <p> Arrival in Kathmandu, hotel check-in, evening Pashupatinath Aarati Darshan, and trip briefing.</p>
+                </li>
+                <li class="day">
+                    <h3>Day 3: Drive to Timure (2000m)</h3>
+                    <p> Visit Pashupatinath Temple, then drive to Syabrubesi/Timure near Nepal-China Border.</p>
+                </li>
+                <li class="day">
+                    <h3>Day 4: Kyirong (2700m)</h3>
+                    <p> Immigration formalities, drive to Kyirong for acclimatization.</p>
+                </li>
+                <li class="day">
+                    <h3>Day 5: Drive to Saga (4500m)</h3>
+                    <p> Scenic drive passing Ghungtang-La (5236m) with views of monasteries and Brahmaputra River.</p>
+                </li>
+                <li class="day">
+                    <h3>Day 6: Lake Mansarovar (4500m)</h3>
+                    <p> Drive to sacred Lake Mansarovar, complete Lake Parikrama by vehicle.</p>
+                </li>
+                <li class="day">
+                    <h3>Day 7: Mansarovar to Darchen (4700m)</h3>
+                    <p> Morning rituals at Lake Mansarovar, then drive to Darchen.</p>
+                </li>
+                <li class="day">
+                    <h3>Day 8: Diraphuk (4900m)</h3>
+                    <p> Drive to Yamdwar, start Kailash Parikrama trek to Diraphuk.</p>
+                </li>
+                <li class="day">
+                    <h3>Day 9: Zuthulphuk (4790m)</h3>
+                    <p> Trek over Dolma La pass (5620m) to Zuthulphuk.</p>
+                </li>
+                <li class="day">
+                    <h3>Day 10: Drive to Saga</h3>
+                    <p> Complete Parikrama, drive back to Saga.</p>
+                </li>
+                <li class="day">
+                    <h3>Day 11: Drive to Kyirong</h3>
+                    <p> Return journey to Kyirong/Timure Border.</p>
+                </li>
+                <li class="day">
+                    <h3>Day 12: Drive to Sunauli</h3>
+                    <p> Cross back into Nepal, drive to Sunauli border.</p>
+                </li>
+            </ul>
+        </div>
+
+       
+
+        <div class="section">
+            <h2>Important Information</h2>
+            <ul>
+                <li> Price is for Indian citizens only (Ex-Kathmandu)</li>
+                <li> Chinese government approval pending for 2024</li>
+                <li> Passport validity: Minimum 6 months</li>
+                <li> Advance deposit: Rs 30,000 or USD $400 per person</li>
+                <li> Age limit: Special conditions for pilgrims 70 years or above</li>
+                <li> COVID-19: Health protocols may apply as per current situation</li>
+            </ul>
+        </div>
+
+        <div class="section">
+            <h2>Inclusions</h2>
+            <ul>
+                <li>✔️ Hotel accommodations as per itinerary</li>
+                <li>✔️ Pure vegetarian meals (breakfast, lunch, dinner)</li>
+                <li>✔️ All transportation in Nepal and Tibet</li>
+                <li>✔️ Tibet visa and permits</li>
+                <li>✔️ Experienced guides and support crew</li>
+                <li>✔️ Oxygen cylinders and first aid</li>
+                <li>✔️ Down jacket and duffle bag (as souvenir)</li>
+            </ul>
+        </div>
+
+        <div class="section">
+            <h2>Exclusions</h2>
+            <ul>
+                <li>❌ Personal horse riding and porter expenses</li>
+                <li>❌ Travel insurance and emergency evacuation costs</li>
+                <li>❌ Extra accommodation due to unforeseen circumstances</li>
+                <li>❌ 5% GST (if depositing in Indian bank account)</li>
+                <li>❌ Personal expenses and tips</li>
+            </ul>
+        </div>
+
+        <div class="section">
+            <h2>Booking and Inquiries</h2>
+            <p>For more information or to book your spiritual journey, please contact us:</p>
+            <p>(You may contact us through the form provided)</p>
+            <p>📞 Phone: 01-4113701 </p>
+            <script>
+                function goToAnotherPage() {
+                    window.location.href = "{% url 'main' %}";
+                }
+            </script>
+            <!-- Add a button for booking inquiries -->
+            <button class="booking-btn" onclick="goToAnotherPage()">Book Now</button>
+        </div>
+    </div>
+
+   
+</body>
+</html>

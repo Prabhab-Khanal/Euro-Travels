@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kathmandu-Pokhara Tour Package - 6N/7D</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            color: #333;
+        }
+        header {
+            background: linear-gradient(135deg, #2a7397, #5da6d0);
+            color: #ecf0f1;
+            text-align: center;
+            padding: 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+        header h1, header p {
+            position: relative;
+            z-index: 1;
+        }
+        h1, h2 {
+            font-family: 'Playfair Display', serif;
+            color: #2c3e50;
+        }
+        .container {
+            width: 80%;
+            margin: auto;
+            overflow: hidden;
+            padding: 20px;
+        }
+        .section {
+            background: #fff;
+            border-radius: 10px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+        .section:hover {
+            transform: translateY(-5px);
+        }
+        h2 {
+            border-bottom: 2px solid #3498db;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+        }
+        #itinerary {
+            list-style-type: none;
+            padding: 0;
+        }
+        .day {
+            background: #ecf0f1;
+            margin-bottom: 15px;
+            padding: 20px;
+            border-radius: 10px;
+            transition: all 0.3s ease;
+        }
+        .day:hover {
+            background: #e0e6e8;
+            transform: scale(1.02);
+        }
+        .day h3 {
+            margin-top: 0;
+            color: #2980b9;
+        }
+        .booking-btn {
+            background-color: #3498db;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            font-size: 16px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        .booking-btn:hover {
+            background-color: #2980b9;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        table, th, td {
+            border: 1px solid #ddd;
+        }
+        th, td {
+            padding: 12px;
+            text-align: left;
+        }
+        th {
+            background-color: #3498db;
+            color: white;
+        }
+        .table-title {
+            font-weight: bold;
+            color: #2c3e50;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <a href="{% url 'main' %}" ><svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="black" class="bi bi-house-fill" viewBox="0 0 16 16">
+            <path d="M8.707 1.5a1 1 0 0 0-1.414 0L.646 8.146a.5.5 0 0 0 .708.708L8 2.207l6.646 6.647a.5.5 0 0 0 .708-.708L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293z"/>
+            <path d="m8 3.293 6 6V13.5a1.5 1.5 0 0 1-1.5 1.5h-9A1.5 1.5 0 0 1 2 13.5V9.293z"/>
+          </svg></a>
+        <h1>Kathmandu-Pokhara Tour Package 2024</h1>
+        <p>6 Nights / 7 Days Tour</p>
+    </header>
+
+    <div class="container">
+        <div class="section">
+            <h2>Tour Highlights</h2>
+            <ul>
+                <li>Explore the cultural heritage of Kathmandu and the natural beauty of Pokhara</li>
+                <li>Visit iconic sites like Pashupatinath, Swayambhunath, and Muktinath Temple</li>
+                <li>Experience scenic drives, sunrise views, and local attractions</li>
+                <li>Enjoy activities such as boating, hiking, and exploring local markets</li>
+            </ul>
+        </div>
+
+        <div class="section">
+            <h2>Outline Itinerary</h2>
+            <ul id="itinerary">
+                <li class="day">
+                    <h3>Day 1: Arrive in Kathmandu</h3>
+                    <p>Arrival at Kathmandu International Airport. Transfer to the hotel and relax. Explore the city at your leisure.</p>
+                </li>
+                <li class="day">
+                    <h3>Day 2: Kathmandu Local Sightseeing</h3>
+                    <p>Full day city tour including visits to Pashupatinath, Bouddhanath, and Swayambhunath. Evening free for personal exploration.</p>
+                </li>
+                <li class="day">
+                    <h3>Day 3: Bhaktapur & Lalitpur Local Sightseeing</h3>
+                    <p>Explore Bhaktapur and Lalitpur, including Bhaktapur Durbar Square and the Kumari Temple in Lalitpur.</p>
+                </li>
+                <li class="day">
+                    <h3>Day 4: Scenic Drive from Kathmandu to Pokhara</h3>
+                    <p>Drive to Pokhara via Manakamana Temple. Enjoy the cable car ride and check into your hotel in Pokhara.</p>
+                </li>
+                <li class="day">
+                    <h3>Day 5: Pokhara Local Sightseeing</h3>
+                    <p>Early morning sunrise at Sarangkot. Visit Talbarahi Temple, Bindhyabasini Temple, Gupteshwar Cave, and Devi's Falls. Evening free for leisure.</p>
+                </li>
+                <li class="day">
+                    <h3>Day 6: Drive from Pokhara to Kathmandu</h3>
+                    <p>Return to Kathmandu. Explore Newroad and Thamel for shopping and sightseeing. Evening at leisure.</p>
+                </li>
+                <li class="day">
+                    <h3>Day 7: Kathmandu Departure</h3>
+                    <p>Transfer to Kathmandu International Airport for your onward journey.</p>
+                </li>
+            </ul>
+        </div>
+
+        <div class="section">
+            <h2>Sightseeing Places</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Kathmandu</th>
+                        <th>Pokhara</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Pashupatinath</td>
+                        <td>Fewa Lake</td>
+                    </tr>
+                    <tr>
+                        <td>Bouddhanath Stupa</td>
+                        <td>Tal Barahi Temple</td>
+                    </tr>
+                    <tr>
+                        <td>Swayambhunath Stupa</td>
+                        <td>Bindhyabasini Temple</td>
+                    </tr>
+                    <tr>
+                        <td>Bhaktapur Durbar Square</td>
+                        <td>Gupteshwar Cave</td>
+                    </tr>
+                    <tr>
+                        <td>Lalitpur Durbar Square</td>
+                        <td>Devi’s Falls</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="section">
+            <h2>Inclusions</h2>
+            <ul>
+                <li>✔️ Transportation by private vehicle</li>
+                <li>✔️ Accommodation in selected hotels</li>
+                <li>✔️ Meals (Breakfast, Lunch & Dinner as per itinerary)</li>
+                <li>✔️ Professional guide for sightseeing tours</li>
+                <li>✔️ All applicable taxes and service charges</li>
+            </ul>
+        </div>
+
+        <div class="section">
+            <h2>Exclusions</h2>
+            <ul>
+                <li>❌ Personal expenses and additional activities</li>
+                <li>❌ Meals not mentioned in the itinerary</li>
+                <li>❌ Entrance fees to monuments and attractions</li>
+                <li>❌ Travel insurance</li>
+                <li>❌ Tips and gratuities</li>
+            </ul>
+        </div>
+
+        <div class="section">
+            <h2>Booking and Inquiries</h2>
+            <p>For more information or to book your trip, please contact us:</p>
+            <p>(You may contact us through the form provided)</p>
+            <p>📞 Phone: 01-4113701 </p>
+            
+            <!-- Add a button for booking inquiries -->
+            <script>
+                function goToAnotherPage() {
+                    window.location.href = "{% url 'main' %}";
+                }
+            </script>
+            <!-- Add a button for booking inquiries -->
+            <button class="booking-btn" onclick="goToAnotherPage()">Book Now</button>
+        </div>
+        
+    </div>
+
+</body>
+</html>

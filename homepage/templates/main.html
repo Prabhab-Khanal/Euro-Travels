@@ -30,7 +30,6 @@
         <li><a href="#home">HOME</a></li>
         <li><a href="#tour">DESTINATIONS</a></li>
         <li><a href="#services">SERVICES</a></li>
-        <li><a href="#about">ABOUT</a></li>
         <li><a href="#contact">CONTACT</a></li>
         <li><a href="#">BOOK TRIPs</a></li>
       </ul>
@@ -53,56 +52,47 @@
       </p>
       <div class="destination__grid">
         <div class="destination__card">
-          <img src="{% static 'images/mustang.jpg' %}" alt="destination" />
+          <a href="{% url 'muktinath' %}"><img src="{% static 'images/mustang.jpg' %}" alt="destination" /></a>
           <div class="destination__card__details">
             <div>
-              <h4>Mustang</h4>
-              <p>A world across the Mountains</p>
+              <h4>Muktinath</h4>
+              <p>A sacred pilgrimage site for both Hindus and Buddhists, Muktinath is renowned for its temple and the 108 water springs that symbolize purification.</p>
             </div>
           </div>
         </div>
         <div class="destination__card">
-          <img src="{% static 'images/kathmandu.jpg' %}" alt="destination" />
+          <a href="{% url 'ktmpkr' %}"><img src="{% static 'images/kathmandu.jpg' %}" alt="destination" /></a>
           <div class="destination__card__details">
             <div>
-              <h4>Kathmandu</h4>
-              <p>A place rich in cultures</p>
+              <h4>Kathmandu-Pokhara</h4>
+              <p>Experience the vibrant culture and stunning landscapes of Kathmandu and Pokhara, where ancient temples meet tranquil lakes and majestic mountains.</p>
             </div>
           </div>
         </div>
         <div class="destination__card">
-          <img src="{% static 'images/lumbini.jpg' %}" alt="destination" />
+          <a href="{% url 'kailash' %}"><img src="{% static 'images/kailash.jpeg' %}" alt="destination" /></a>
           <div class="destination__card__details">
             <div>
-              <h4>Lumbini</h4>
-              <p>Birth place of Lord Buddha and Symbol of Peace</p>
+              <h4>Kailash Mansarovar</h4>
+              <p>Embark on a spiritual journey to the holy Mount Kailash and serene Mansarovar Lake, offering profound beauty and deep religious significance.</p>
             </div> 
           </div>
         </div>
           <div class="destination__card"> 
-            <img src="{% static 'images/pokhara.jpg' %}" alt="destination" />
+            <a href="{% url 'kalinchowk' %}"><img src="{% static 'images/kalinchowk.jpg' %}" alt="destination" /></a>
             <div class="destination__card__details">
               <div>
-                <h4>Pokhara</h4>
-                <p>Enjoy the Celebrations of Lively Festivals</p>
+                <h4>Kalinchowk</h4>
+                <p>Known for its panoramic views of the Himalayas and the Kalinchowk Bhagwati Temple, this scenic hill station offers a peaceful retreat and spectacular vistas.</p>
               </div>
             </div>
           </div>
           <div class="destination__card"> 
-            <img src="{% static 'images/chitwan.jpg' %}" alt="destination" />
+            <a href="{% url 'pathivara' %}"><img src="{% static 'images/pathivara.jpg' %}" alt="destination" /></a>
             <div class="destination__card__details">
               <div>
-                <h4>Chitwan</h4>
-                <p>Joyful Elephant Rides</p>
-              </div>
-            </div>
-          </div>
-          <div class="destination__card"> 
-            <img src="{% static 'images/bandipur.jpg' %}" alt="destination" />
-            <div class="destination__card__details">
-              <div>
-                <h4>Bandipur</h4>
-                <p>Explore the historical alley that reflects the origin</p>
+                <h4>Pathivara</h4>
+                <p> A prominent Hindu temple dedicated to the goddess Pathivara, located in the eastern part of Nepal, known for its spiritual significance and breathtaking mountain views.</p>
               </div>
             </div>
           </div>
@@ -122,10 +112,12 @@
           </div>
           <div class="journey__card__content">
             <span><i class="ri-bookmark-3-line"></i></span>
-            <h4>Air Ticketing</h4>
-            <p> 
-              Book your domestic and international flights with us and make your travel planning effortless.
-            </p>
+            <a href="https://yatratune.com/euro/domestic/" target="_blank" rel="noopener noreferrer">
+              <h4>Air Ticketing</h4>
+              <p> 
+                Book your domestic and international flights with us and make your travel planning effortless.
+              </p>
+            </a>
           </div>
         </div>
         <div class="journey__card">
@@ -135,10 +127,12 @@
           </div>
           <div class="journey__card__content">
             <span><i class="ri-landscape-fill"></i></span>
-            <h4>Tour Packages</h4>
-            <p>
-              Explore our curated tour packages and travel the world.Enjoy personalized travel plans designed to match your preferencesand interests.
-            </p>
+            <a href="#tour">
+              <h4>Tour Packages</h4>
+              <p>
+                Explore our curated tour packages and travel the world.Enjoy personalized travel plans designed to match your preferencesand interests.
+              </p>
+            </a>
           </div>
         </div>
         <div class="journey__card">
@@ -148,26 +142,79 @@
           </div>
           <div class="journey__card__content">
             <span><i class="ri-map-2-line"></i></span>
-            <h4>Hotel Booking</h4>
-            <p>
-              Find and book your dream hotel accommodation. Choose your kind of comfort and peace with the best services.
-            </p>
+            <a href="">
+              <h4>Hotel Booking</h4>
+              <p>
+                Find and book your dream hotel accommodation. Choose your kind of comfort and peace with the best services.
+              </p>
+            </a>
           </div>
         </div>
       </div>
     </section>
 
-    <section class="section__container showcase__container" id="about">
-      <div class="showcase__image">
-        <img src="{% static 'images/logo.jpeg' %}" alt="showcase" />
-      </div>
-      <div class="showcase__content">
-        <h4>ABOUT US</h4>
-        <p>
-          Welcome to Euro Tour and Travel! Based in the heart of Kathmandu, Nepal, we are your trusted partner for all your travel needs. From air ticketing and tour packages to vehicle hire and hotel booking, we offer a comprehensive range of services designed to make your travel experience seamless and memorable. Visit us at the Pashupativision Building, Pingalasthan, Gaushala, Kathmandu, and let us help you explore the world with ease and comfort.
-        </p>
-      </div>
-    </section>
+
+
+    <section class="section__container journey__container" id="Testimonials">
+      <h2 class="section__header">Our Testimonials</h2>
+      <p class="section__description">
+        Real stories from real travelers—discover why our tours are unforgettable
+      </p>
+        <div style="position: relative; width: 100%; max-width: 600px; margin: 20px auto; overflow: hidden;">
+          <div class="slides" style="display: flex; transition: transform 1s ease-in-out;">
+              <!-- Testimonial Slide 1 -->
+              <div class="slide" style="min-width: 100%; box-sizing: border-box; padding: 20px; background-color: #fff; border: 1px solid #ddd; border-radius: 10px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); display: flex; flex-direction: column; justify-content: space-between;">
+                  <p style="font-style: italic; color: #555; margin: 0; font-size: larger;">"Best Tour and Travel company that Provide Very Good ticketing , travel and tour Services in Nepal ! Located at Pashupati vision complex"</p>
+                  <div style="text-align: right;">
+                      <div style="color: rgb(38, 85, 214); margin: 10px 0;">★★★★★</div>
+                      <p style="font-weight: bold; color: #333; margin: 0;">Tikaraj Neupane</p>
+                  </div>
+              </div>
+              <!-- Testimonial Slide 2 -->
+              <div class="slide" style="min-width: 100%; box-sizing: border-box; padding: 20px; background-color: #fff; border: 1px solid #ddd; border-radius: 10px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); display: flex; flex-direction: column; justify-content: space-between;">
+                  <p style="font-style: italic; color: #555; margin: 0;font-size: larger;">"We used Euro Tours & Travels for our long family vacation in Nepal. They arranged car service for us, and the overall arrangement was done very professionally. Mr. Niraj Pokharel personally attended to every detail of our itinerary.
+
+                    We rented a car with a driver, and the condition of the car was excellent. The driver was outstanding, with exceptional knowledge of Nepal’s geography, history, and geopolitical topics. He was courteous, polite, and disciplined.
+                    
+                    I would love to use the services of Euro Tours & Travels again if we return to Nepal in the future."</p>
+                  <div style="text-align: right;">
+                      <div style="color: rgb(38, 85, 214); margin: 10px 0;">★★★★★</div>
+                      <p style="font-weight: bold; color: #333; margin: 0;">Siddharth Shah</p>
+                  </div>
+              </div>
+              <!-- Testimonial Slide 3 -->
+              <div class="slide" style="min-width: 100%; box-sizing: border-box; padding: 20px; background-color: #fff; border: 1px solid #ddd; border-radius: 10px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); display: flex; flex-direction: column; justify-content: space-between;">
+                  <p style="font-style: italic; color: #555; margin: 0;font-size: larger;">"One of the most reliable and trustworthy tours and travel in the heart of valley."</p>
+                  <div style="text-align: right;">
+                      <div style="color: rgb(38, 85, 214); margin: 10px 0;">★★★★★</div>
+                      <p style="font-weight: bold; color: #333; margin: 0;">Priyansh Pokharel</p>
+                  </div>
+              </div>
+              <!-- Testimonial Slide 4 -->
+              <div class="slide" style="min-width: 100%; box-sizing: border-box; padding: 20px; background-color: #fff; border: 1px solid #ddd; border-radius: 10px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); display: flex; flex-direction: column; justify-content: space-between;">
+                  <p style="font-style: italic; color: #555; margin: 0;font-size: larger;">"Good Service."</p>
+                  <div style="text-align: right;">
+                      <div style="color: rgb(38, 85, 214); margin: 10px 0;">★★★★★</div>
+                      <p style="font-weight: bold; color: #333; margin: 0;">Srikanth Tallam</p>
+                  </div>
+              </div>
+              
+              
+          </div>
+        </div>
+      </section>
+  <script>
+      let currentSlide = 0;
+      const slides = document.querySelector('.slides');
+      const totalSlides = document.querySelectorAll('.slide').length;
+
+      function showNextSlide() {
+          currentSlide = (currentSlide + 1) % totalSlides;
+          slides.style.transform = `translateX(-${currentSlide * 100}%)`;
+      }
+
+      setInterval(showNextSlide, 3000); // Change slide every 3 seconds
+  </script>
 
     <section class="section__container card__container" id="contact">
       <div class="card_content">
@@ -196,13 +243,23 @@
         <div class="section__container footer__container">
             <div class="footer__col">
                 <div class="footer__logo">
-                    <a href="#" class="logo">Euro Tours & Travels</a>
+                    <a href="#home" class="logo">Euro Tours & Travels</a>
                 </div>
-                <p>
-                    Explore the world with ease and excitement through our comprehensive
-                    travel platform. Your journey begins here, where seamless planning
-                    meets unforgettable experiences.
-                </p>
+                <p></p>
+                <ul>
+                  <li>
+                    Phone No: 01-4113701 
+                  </li>
+                  <br>
+                  <li>
+                    Email: 
+                  </li>
+                  <br>
+                  <li>
+                    Address: Pashupati vision complex, Kathmandu  
+                  </li>
+                </ul>
+                <p></p>
                 <ul class="footer__socials">
                     <li>
                         <a href="#"><i class="ri-facebook-fill"></i></a>
@@ -218,18 +275,18 @@
             <div class="footer__col">
                 <h4>Quick Links</h4>
                 <ul class="footer__links">
-                    <li><a href="#">Home</a></li>
-                    <li><a href="#">Contact</a></li>
-                    <li><a href="#">Destinations</a></li>
-                    <li><a href="#">Terms & Conditions</a></li>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                    <li><a href="#tour">Destinations</a></li>
+                    <li><a href="#services">Services</a></li>
                 </ul>
             </div>
             <div class="footer__col">
                 <h4>Our Services</h4>
                 <ul class="footer__links">
-                    <li><a href="#">Air Ticketing</a></li>
-                    <li><a href="#">Tour Packages</a></li>
-                    <li><a href="#">Hotel Booking</a></li>
+                    <li><a href="#services">Air Ticketing</a></li>
+                    <li><a href="#services">Tour Packages</a></li>
+                    <li><a href="#services">Hotel Booking</a></li>
                 </ul>
             </div>
             <div class="footer__col map-section">

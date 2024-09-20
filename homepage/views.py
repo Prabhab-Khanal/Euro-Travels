@@ -2,7 +2,6 @@ from datetime import datetime
 from django.http import HttpResponse
 from django.shortcuts import redirect, render
 from .models import Contact
-from core.models import Package, Hotel, AirTicket
 from django.core.mail import send_mail
 from django.conf import settings
 from django.contrib import messages
@@ -49,15 +48,7 @@ def index(request):
 
 
 
-def package_list(request):
-    packages = Package.objects.all()
-    hotels = Hotel.objects.all()
-    airtickets = AirTicket.objects.all()
-    return render(request, 'packages.html', {
-        'packages': packages,
-        'hotels': hotels,
-        'airtickets': airtickets
-        })
+
 
 '''
     This code is used to send all the messages of the contact me to the mail used in .env
@@ -137,3 +128,18 @@ def error(request):
 # If sending message is un-successful
 def email_non_exist(request):
     return render(request, 'email_not_exist.html')
+
+def tour_muktinath(request):
+    return render(request, 'mustang.html')
+
+def tour_pathivara(request):
+    return render(request, 'pathivara.html')
+
+def tour_ktmpkr(request):
+    return render(request, 'ktmpkr.html')
+
+def tour_kailash(request):
+    return render(request, 'kailash.html')
+
+def tour_kalinchowk(request):
+    return render(request, 'kalinchowk.html')
