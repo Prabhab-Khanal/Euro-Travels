@@ -13,9 +13,12 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = os.environ.get('SECRET_KEY')
-DEBUG = os.environ.get('DEBUG') == "TRUE" # checks if DEBUG is TRUE or FALSE
+DEBUG = os.environ.get('DEBUG') == 'True' # checks if DEBUG is TRUE or FALSE
 
-ALLOWED_HOSTS = ['*'] # * only for locally hosting the project
+if DEBUG:
+    ALLOWED_HOSTS = ['localhost', '127.0.0.1']  # Local development
+else:
+    ALLOWED_HOSTS = ['your-production-domain.com', 'www.your-production-domain.com', 'localhost']
 
 # Application definition
 
@@ -31,6 +34,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
+    "whitenoise.middleware.WhiteNoiseMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.common.CommonMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",
@@ -107,24 +111,15 @@ USE_TZ = True
 
 STATIC_URL = "static/"
 STATICFILES_DIRS = [BASE_DIR / "static"]
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
-# URL for login required
-LOGIN_URL = 'admin-login'
-SESSION_EXPIRE_AT_BROWSER_CLOSE = True
-
 # image media directory
 MEDIA_ROOT = os.path.join(BASE_DIR, 'medai')
 MEDIA_URL = '/media/'
 
-# required settings for mail
-EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_PORT = 587
-EMAIL_USE_TLS = True
-EMAIL_HOST_USER = os.environ.get('EMAIL')
-EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_PASSWORD')
+WHITENOISE_USE_FINDERS = True

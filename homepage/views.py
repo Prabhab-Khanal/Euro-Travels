@@ -54,80 +54,80 @@ def index(request):
     This code is used to send all the messages of the contact me to the mail used in .env
     The mail is sent to the person who is using contact me and also the travel agency
 '''
-def contact_view(request):
-    if request.method == 'POST':
-        name = request.POST.get('name')
-        email = request.POST.get('email')
-        message = request.POST.get('message')
+# def contact_view(request):
+#     if request.method == 'POST':
+#         name = request.POST.get('name')
+#         email = request.POST.get('email')
+#         message = request.POST.get('message')
 
-        special_characters = "!@#$%^&*()_-+=/?,<>'"
+#         special_characters = "!@#$%^&*()_-+=/?,<>'"
 
-        # checking if name contains special characters
-        if any(char in special_characters for char in name):
-            return redirect('error-page')
+#         # checking if name contains special characters
+#         if any(char in special_characters for char in name):
+#             return redirect('error-page')
 
-        try:
-            # Validate the email address format
-            validate_email(email)
-        except ValidationError:
-            return redirect('email-page')
+#         try:
+#             # Validate the email address format
+#             validate_email(email)
+#         except ValidationError:
+#             return redirect('email-page')
 
-        # Construct email subject and message body for the company
-        receiving_subject = 'Message Received From Customer'
-        received_body_html = render_to_string('admin_email_template.html',{
-            'name' : name,
-            'message' : message,
-            'email' : email,
-            })
+#         # Construct email subject and message body for the company
+#         receiving_subject = 'Message Received From Customer'
+#         received_body_html = render_to_string('admin_email_template.html',{
+#             'name' : name,
+#             'message' : message,
+#             'email' : email,
+#             })
 
-        try:
-            # Send the enquiry email to the company
-            send_mail(
-                receiving_subject,
-                '',
-                settings.EMAIL_HOST_USER,  # Company email address (sender)
-                [settings.EMAIL_HOST_USER],  # Company email address to receive the enquiry
-                fail_silently=False,
-                html_message=received_body_html  # The HTML message
-            )
+#         try:
+#             # Send the enquiry email to the company
+#             send_mail(
+#                 receiving_subject,
+#                 '',
+#                 settings.EMAIL_HOST_USER,  # Company email address (sender)
+#                 [settings.EMAIL_HOST_USER],  # Company email address to receive the enquiry
+#                 fail_silently=False,
+#                 html_message=received_body_html  # The HTML message
+#             )
                 
-            # subject and body to send user the message that their enquiry is sent
-            thank_you_subject = "Thank you for Contacting Us"
+#             # subject and body to send user the message that their enquiry is sent
+#             thank_you_subject = "Thank you for Contacting Us"
 
-            # Render the HTML email template
-            thank_you_body_html = render_to_string('email_template.html', {
-                'name': name,
-                'message': message,
-            })
+#             # Render the HTML email template
+#             thank_you_body_html = render_to_string('email_template.html', {
+#                 'name': name,
+#                 'message': message,
+#             })
 
-            # Send the HTML email to the user
-            send_mail(
-                thank_you_subject,
-                '',
-                settings.EMAIL_HOST_USER,  # Company email address (sender)
-                [email],  # User's email address to receive the thank you email (receiver)
-                fail_silently=False,
-                html_message=thank_you_body_html  # The HTML message
-            )
-            return redirect('success-page')
+#             # Send the HTML email to the user
+#             send_mail(
+#                 thank_you_subject,
+#                 '',
+#                 settings.EMAIL_HOST_USER,  # Company email address (sender)
+#                 [email],  # User's email address to receive the thank you email (receiver)
+#                 fail_silently=False,
+#                 html_message=thank_you_body_html  # The HTML message
+#             )
+#             return redirect('success-page')
 
-        except Exception as e:
-            # If any error occurs, this block will handle it
-            return redirect('error-page')
+#         except Exception as e:
+#             # If any error occurs, this block will handle it
+#             return redirect('error-page')
 
-    return render(request, 'main.html')
+#     return render(request, 'main.html')
 
-# If sending message is successful
-def success(request):
-    return render(request, 'success.html')
+# # If sending message is successful
+# def success(request):
+#     return render(request, 'success.html')
 
-# If sending message is un-successful
-def error(request):
-    return render(request, 'error.html')
+# # If sending message is un-successful
+# def error(request):
+#     return render(request, 'error.html')
 
-# If sending message is un-successful
-def email_non_exist(request):
-    return render(request, 'email_not_exist.html')
+# # If sending message is un-successful
+# def email_non_exist(request):
+#     return render(request, 'email_not_exist.html')
 
 def tour_muktinath(request):
     return render(request, 'mustang.html')
